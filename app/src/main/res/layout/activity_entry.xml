@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:id="@+id/entry_layout"
+    android:layout_height="match_parent"
+    android:background="@color/orange"
+    tools:context="com.hadibastanfar.luckyguess.Entry">
+
+    <Button
+        android:onClick="howToPlay"
+        android:id="@+id/buHowToPlay"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_weight="0.5"
+        android:background="@color/maroon"
+        android:textColor="@color/seaBlue"
+        android:fontFamily="@font/blur"
+        android:textSize="50sp"
+        android:text="How To Play?"
+        tools:layout_editor_absoluteX="174dp"
+        tools:layout_editor_absoluteY="201dp" />
+
+    <Button
+        android:onClick="letstart"
+        android:id="@+id/buLetsStart"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_weight="0.5"
+        android:background="@color/seaBlue"
+        android:textColor="@color/maroon"
+        android:fontFamily="@font/blur"
+        android:textSize="50sp"
+        android:text="Let's Begin"
+        tools:layout_editor_absoluteX="174dp"
+        tools:layout_editor_absoluteY="201dp" />
+</LinearLayout>
