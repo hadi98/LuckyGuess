@@ -37,8 +37,7 @@ public class Game extends AppCompatActivity {
         btnYes.startAnimation(myAnim);
 
         increment();
-        Toast.makeText(this,"Increment is: "+a,Toast.LENGTH_LONG).show();
-
+        Toast.makeText(this,"Increment is: " + a,Toast.LENGTH_LONG).show();
     }
 
     public void no(View view) {
@@ -52,7 +51,6 @@ public class Game extends AppCompatActivity {
         Toast.makeText(this,"Increment is: "+a,Toast.LENGTH_LONG).show();
 
     }
-
 
     public void increment(){
         a += 1;
