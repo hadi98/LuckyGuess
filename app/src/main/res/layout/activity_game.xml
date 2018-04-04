@@ -17,7 +17,7 @@
         android:layout_marginTop="8dp"
         android:autoSizeStepGranularity="10sp"
         android:autoSizeTextType="uniform"
-        android:background="@drawable/box1_red"
+        android:background="@drawable/frame_red"
         android:fontFamily="@font/sepcelite"
         android:gravity="center"
         android:lineSpacingExtra="20dp"
@@ -30,13 +30,30 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
+    <TextView
+        android:id="@+id/txvAsk"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="8dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:fontFamily="@font/blur"
+        android:textColor="@color/maroon"
+        android:text="Do You You See Your Number?"
+        android:textSize="29sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
     <Button
         android:onClick="no"
         android:id="@+id/buNo"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:background="@drawable/button"
         android:fontFamily="@font/blur"
+        android:background="@drawable/button_right"
         android:text="NO"
         android:textColor="#fff"
         android:textSize="35sp"
@@ -58,21 +75,20 @@
         app:layout_constraintStart_toStartOf="parent"
         tools:ignore="OnClick" />
 
-    <TextView
-        android:id="@+id/txvAsk"
+    <Button
+        android:onClick="reset"
+        android:id="@+id/tryAgain"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="8dp"
         android:layout_marginEnd="8dp"
         android:layout_marginStart="8dp"
-        android:layout_marginTop="8dp"
+        android:background="@drawable/mid_button"
+        android:text="Try Again?"
+        android:textSize="30sp"
         android:fontFamily="@font/blur"
-        android:textColor="@color/maroon"
-        android:text="Do You You See Your Number?"
-        android:textSize="29sp"
+        android:visibility="invisible"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintStart_toStartOf="parent" />
 
 </android.support.constraint.ConstraintLayout>

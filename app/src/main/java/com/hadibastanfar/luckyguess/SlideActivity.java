@@ -11,10 +11,11 @@ import android.support.v7.app.AppCompatActivity;
 import android.util.DisplayMetrics;
 import android.util.TypedValue;
 import android.view.View;
+import android.view.WindowManager;
 import android.widget.TextView;
 
 
-public class MainActivity extends AppCompatActivity {
+public class SlideActivity extends AppCompatActivity {
 
     private View indicator1;
     private View indicator2;
@@ -56,9 +57,11 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+        getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,
+                WindowManager.LayoutParams.FLAG_FULLSCREEN);
+        setContentView(R.layout.activity_slide);
 
-        // Instantiate a ViewPager and a PagerAdapter.
+        // Instantiate tapCounter ViewPager and tapCounter PagerAdapter.
         mPager = findViewById(R.id.pager);
         mPagerAdapter = new ScreenSlidePagerAdapter(getSupportFragmentManager());
         mPager.setAdapter(mPagerAdapter);
@@ -84,7 +87,6 @@ public class MainActivity extends AppCompatActivity {
     public void onBackPressed() {
         if (mPager.getCurrentItem() == 0) {
             // If the user is currently looking at the first step, allow the system to handle the
-            // Back button. This calls finish() on this activity and pops the back stack.
             super.onBackPressed();
         } else {
             // Otherwise, select the previous step.
@@ -93,7 +95,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     /**
-     * A simple pager adapter that represents 5 ScreenSlidePageFragment objects, in
+     * A simple pager adapter that represents 5 SlideFragment objects, in
      * sequence.
      */
 
@@ -106,7 +108,7 @@ public class MainActivity extends AppCompatActivity {
 
         @Override
         public Fragment getItem(int position) {
-            ScreenSlidePageFragment fragment = new ScreenSlidePageFragment();
+            SlideFragment fragment = new SlideFragment();
             fragment.data = titles[position];
             fragment.color = colors[position];
             return fragment;
