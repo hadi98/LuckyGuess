@@ -2,8 +2,15 @@ package com.hadibastanfar.luckyguess;
 
 import  android.content.Intent;
 import android.os.Handler;
+import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentManager;
+import android.support.v4.app.FragmentStatePagerAdapter;
+import android.support.v4.view.PagerAdapter;
+import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.DisplayMetrics;
+import android.util.TypedValue;
 import android.view.View;
 import android.view.WindowManager;
 import android.view.animation.Animation;
@@ -13,15 +20,13 @@ import android.widget.LinearLayout;
 
 public class Entry extends AppCompatActivity {
 
-    //githubtest
-    //dafaq
-    //shaghz
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,
                 WindowManager.LayoutParams.FLAG_FULLSCREEN);
         setContentView(R.layout.activity_entry);
+
     }
 
     public void letstart(View view) {
@@ -44,7 +49,6 @@ public class Entry extends AppCompatActivity {
 
             }
         },250);
-
     }
 
     public void howToPlay(View view) {
@@ -56,6 +60,9 @@ public class Entry extends AppCompatActivity {
 
         final Animation myAnim1 = AnimationUtils.loadAnimation(this, R.anim.bounce_slow);
         btnHTP.startAnimation(myAnim1);
+
+        Intent intentHTP = new Intent(this, MainActivity.class);
+        startActivity(intentHTP);
 
     }
 }
