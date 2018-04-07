@@ -2,6 +2,7 @@
     android:id="@+id/content"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/dark_slate_gray"
     android:orientation="vertical">
 
 
@@ -12,8 +13,11 @@
         android:layout_height="match_parent"
         android:gravity="center"
         android:lineSpacingMultiplier="1.2"
+        android:fontFamily="@font/blur"
+        android:textColor="#fff"
         android:padding="16dp"
         android:text="Hello, World!" />
+
 
 
 </FrameLayout>

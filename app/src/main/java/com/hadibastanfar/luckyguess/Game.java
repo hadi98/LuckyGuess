@@ -39,6 +39,12 @@ public class Game extends AppCompatActivity {
 //        animation.start();
     }
 
+    @Override
+    public void onBackPressed() {
+        Intent intentbackpressed = new Intent(this,Entry.class);
+        startActivity(intentbackpressed);
+    }
+
     public void yes(View view) {
 
         increment();
@@ -157,7 +163,6 @@ public class Game extends AppCompatActivity {
 
             }
         },100);
-
     }
 
     public void increment(){

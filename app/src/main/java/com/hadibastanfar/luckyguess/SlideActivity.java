@@ -1,7 +1,9 @@
 package com.hadibastanfar.luckyguess;
 
 
+import android.content.Intent;
 import android.os.Bundle;
+import android.os.Handler;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentStatePagerAdapter;
@@ -17,23 +19,20 @@ import android.widget.TextView;
 
 public class SlideActivity extends AppCompatActivity {
 
+    public TextView okText;
+    public boolean okVisibility = false;
+
     private View indicator1;
     private View indicator2;
     private View indicator3;
     private View indicator4;
 
-    public int color01;
-
-    public TextView txv;
     public String[] titles = {
-
-            "This is the first slide 1"
-            ,"This is the second slide 2"
-            ,"This is the third slide 3"
-            ,"This is the fourth slide 4"
-            ,"This is the fifth slide 5"
+            "Pick a number between 0 and 107"
+            ,"Then look carefully at the 7 different card that will be shown to you step by step "
+            ,"If You see the number in the card just tap Yes if not then tap NO"
+            ,"And when all the 7 cards are shown the number you you had in mind will appear on the cards frame"
     };
-
 
     public int[] colors;
 
@@ -41,17 +40,16 @@ public class SlideActivity extends AppCompatActivity {
      * The number of pages (wizard steps) to show in this demo.
      */
     private static final int NUM_PAGES = 4;
-
     /**
      * The pager widget, which handles animation and allows swiping horizontally to access previous
      * and next wizard steps.
      */
     private ViewPager mPager;
-
     /**
      * The pager adapter, which provides the pages to the view pager widget.
      */
     private PagerAdapter mPagerAdapter;
+
 
 
     @Override
@@ -61,13 +59,16 @@ public class SlideActivity extends AppCompatActivity {
                 WindowManager.LayoutParams.FLAG_FULLSCREEN);
         setContentView(R.layout.activity_slide);
 
+        okText = findViewById(R.id.oktxv);
+        okText.setVisibility(View.INVISIBLE);
+
         // Instantiate tapCounter ViewPager and tapCounter PagerAdapter.
         mPager = findViewById(R.id.pager);
         mPagerAdapter = new ScreenSlidePagerAdapter(getSupportFragmentManager());
         mPager.setAdapter(mPagerAdapter);
 
         colors  = new int[]{getResources().getColor(R.color.usc_gold)
-                , getResources().getColor(R.color.pastel_blue)
+                ,getResources().getColor(R.color.pastel_blue)
                 ,getResources().getColor(R.color.medium_vermilion)
                 ,getResources().getColor(R.color.lilac_luster)
                 ,getResources().getColor(R.color.dark_slate_gray)};
@@ -80,7 +81,6 @@ public class SlideActivity extends AppCompatActivity {
         mPager = findViewById(R.id.pager);
         mPager.setOnPageChangeListener(new WizardPageChangeListener());
         updateIndicators(0);
-
     }
 
     @Override
@@ -124,24 +124,36 @@ public class SlideActivity extends AppCompatActivity {
     private class WizardPageChangeListener implements ViewPager.OnPageChangeListener {
 
         @Override
-        public void onPageScrollStateChanged(int position) {
-            // TODO Auto-generated method stub
-
-        }
+        public void onPageScrollStateChanged(int position) {}
 
         @Override
-        public void onPageScrolled(int position, float positionOffset,
-                                   int positionOffsetPixels) {
-            // TODO Auto-generated method stub
-
-        }
+        public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {}
 
         @Override
-        public void onPageSelected(int position) {
+        public void onPageSelected(final int position) {
             updateIndicators(position);
+            if (position == 3){
+                okVisibility = true;
+            }
+            if (okVisibility == true){
+
+                final Handler handler = new Handler();
+                handler.postDelayed(new Runnable() {
+                    @Override
+                    public void run() {
+                        okText.setVisibility(View.VISIBLE);
+                    }
+                },1500);
+
+
+            }
 
         }
+    }
 
+    public void ok(View view){
+        Intent intentok = new Intent(this,Game.class);
+        startActivity(intentok);
     }
 
     public void updateIndicators(int position) {

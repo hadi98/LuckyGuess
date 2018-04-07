@@ -14,6 +14,7 @@ public class SlideFragment extends Fragment {
      public String data;
      public int color;
 
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -30,6 +31,8 @@ public class SlideFragment extends Fragment {
 
         //we bring the text obj from our XML to java
         txv = view.findViewById(R.id.textview);
+
+
 
         //and we set it's text to any any value that is passed into data.
         txv.setText(data);
