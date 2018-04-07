@@ -37,20 +37,18 @@ public class SlideActivity extends AppCompatActivity {
     public int[] colors;
 
     /**
-     * The number of pages (wizard steps) to show in this demo.
-     */
+      The number of pages (wizard steps) to show in this demo.
+      */
     private static final int NUM_PAGES = 4;
     /**
-     * The pager widget, which handles animation and allows swiping horizontally to access previous
-     * and next wizard steps.
-     */
+       The pager widget, which handles animation and allows swiping horizontally to access previous
+       and next wizard steps.
+      */
     private ViewPager mPager;
     /**
-     * The pager adapter, which provides the pages to the view pager widget.
-     */
+       The pager adapter, which provides the pages to the view pager widget.
+      */
     private PagerAdapter mPagerAdapter;
-
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -62,21 +60,25 @@ public class SlideActivity extends AppCompatActivity {
         okText = findViewById(R.id.oktxv);
         okText.setVisibility(View.INVISIBLE);
 
-        // Instantiate tapCounter ViewPager and tapCounter PagerAdapter.
-        mPager = findViewById(R.id.pager);
-        mPagerAdapter = new ScreenSlidePagerAdapter(getSupportFragmentManager());
-        mPager.setAdapter(mPagerAdapter);
-
-        colors  = new int[]{getResources().getColor(R.color.usc_gold)
-                ,getResources().getColor(R.color.pastel_blue)
-                ,getResources().getColor(R.color.medium_vermilion)
-                ,getResources().getColor(R.color.lilac_luster)
-                ,getResources().getColor(R.color.dark_slate_gray)};
-
         indicator1 = findViewById(R.id.indicator1);
         indicator2 = findViewById(R.id.indicator2);
         indicator3 = findViewById(R.id.indicator3);
         indicator4 = findViewById(R.id.indicator4);
+
+        colors  = new int[]{
+
+                 getResources().getColor(R.color.usc_gold)
+                ,getResources().getColor(R.color.pastel_blue)
+                ,getResources().getColor(R.color.medium_vermilion)
+                ,getResources().getColor(R.color.lilac_luster)
+                ,getResources().getColor(R.color.dark_slate_gray)
+
+        };
+
+        // Instantiate tapCounter ViewPager and tapCounter PagerAdapter.
+        mPager = findViewById(R.id.pager);
+        mPagerAdapter = new ScreenSlidePagerAdapter(getSupportFragmentManager());
+        mPager.setAdapter(mPagerAdapter);
 
         mPager = findViewById(R.id.pager);
         mPager.setOnPageChangeListener(new WizardPageChangeListener());
@@ -124,10 +126,17 @@ public class SlideActivity extends AppCompatActivity {
     private class WizardPageChangeListener implements ViewPager.OnPageChangeListener {
 
         @Override
-        public void onPageScrollStateChanged(int position) {}
+        public void onPageScrollStateChanged(int position) {
+
+
+
+        }
 
         @Override
-        public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {}
+        public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
+
+
+        }
 
         @Override
         public void onPageSelected(final int position) {
@@ -135,6 +144,7 @@ public class SlideActivity extends AppCompatActivity {
             if (position == 3){
                 okVisibility = true;
             }
+
             if (okVisibility == true){
 
                 final Handler handler = new Handler();
@@ -144,10 +154,7 @@ public class SlideActivity extends AppCompatActivity {
                         okText.setVisibility(View.VISIBLE);
                     }
                 },1500);
-
-
             }
-
         }
     }
 
@@ -236,7 +243,5 @@ public class SlideActivity extends AppCompatActivity {
                 indicator4.requestLayout();
                 break;
         }
-
     }
-
 }

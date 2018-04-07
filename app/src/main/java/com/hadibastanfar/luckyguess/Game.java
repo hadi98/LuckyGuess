@@ -34,9 +34,9 @@ public class Game extends AppCompatActivity {
         buttonYes = findViewById(R.id.buYes);
         buttonNo = findViewById(R.id.buNo);
 
-//        ObjectAnimator animation = ObjectAnimator.ofFloat(textViewCards, "translationX", 100f);
-//        animation.setDuration(2000);
-//        animation.start();
+        /**ObjectAnimator animation = ObjectAnimator.ofFloat(textViewCards, "translationX", 100f);
+        animation.setDuration(2000);
+        animation.start();*/
     }
 
     @Override
