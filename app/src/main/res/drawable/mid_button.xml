@@ -23,6 +23,6 @@
         />
     <stroke
         android:width="3dp"
-        android:color="@color/usc_gold"
+        android:color="@color/oldGold"
         />
 </shape>

@@ -23,6 +23,7 @@ public class Game extends AppCompatActivity {
     public int tapCounter = 0;
     public int guessedNumber = 0;
     public Button buttontryAgain, buttonYes, buttonNo;
+    public ThemeClass car;
 
     List<ThemeClass> layoutContainer = new ArrayList<>();
 
@@ -40,7 +41,7 @@ public class Game extends AppCompatActivity {
 
         ThemeClass layoutMaroon = new ThemeClass();
 
-        layoutMaroon.backGround = R.color.maroon;
+        layoutMaroon.backGround = R.color.maroonVeryLite;
         layoutMaroon.leftButton = R.drawable.button_left_maroon;
         layoutMaroon.rightButton = R.drawable.button_right_maroon;
         layoutMaroon.frame = R.drawable.frame_maroon;
@@ -48,7 +49,7 @@ public class Game extends AppCompatActivity {
 
         ThemeClass layoutSeaBlue = new ThemeClass();
 
-        layoutSeaBlue.backGround = R.color.seaBlue;
+        layoutSeaBlue.backGround = R.color.seaBlueVeryLite;
         layoutSeaBlue.leftButton = R.drawable.button_left_seablue;
         layoutSeaBlue.rightButton = R.drawable.button_right_seablue;
         layoutSeaBlue.frame = R.drawable.frame_seablue;
@@ -56,50 +57,50 @@ public class Game extends AppCompatActivity {
 
         ThemeClass layoutOldGold = new ThemeClass();
 
-        layoutOldGold.backGround = R.color.oldGold;
-        layoutOldGold.leftButton = R.drawable.button_left_maroon;
-        layoutOldGold.rightButton = R.drawable.button_right_maroon;
-        layoutOldGold.frame = R.drawable.frame_junglegreen;
+        layoutOldGold.backGround = R.color.oldGoldVeryLite;
+        layoutOldGold.leftButton = R.drawable.button_left_oldgold;
+        layoutOldGold.rightButton = R.drawable.button_right_oldgold;
+        layoutOldGold.frame = R.drawable.frame_oldgold;
         layoutContainer.add(layoutOldGold);
 
         ThemeClass layoutJungleGreen = new ThemeClass();
 
-        layoutJungleGreen.backGround = R.color.jungleGreen;
-        layoutJungleGreen.leftButton = R.drawable.button_left_maroon;
-        layoutJungleGreen.rightButton = R.drawable.button_right_maroon;
-        layoutJungleGreen.frame = R.drawable.frame_seablue;
+        layoutJungleGreen.backGround = R.color.jungleGreenVeryLite;
+        layoutJungleGreen.leftButton = R.drawable.button_left_junglegreen;
+        layoutJungleGreen.rightButton = R.drawable.button_right_junglegreen;
+        layoutJungleGreen.frame = R.drawable.frame_junglegreen;
         layoutContainer.add(layoutJungleGreen);
 
         ThemeClass layoutStoneBlue = new ThemeClass();
 
-        layoutStoneBlue.backGround = R.color.stoneBlue;
-        layoutStoneBlue.leftButton = R.drawable.button_left_maroon;
-        layoutStoneBlue.rightButton = R.drawable.button_right_maroon;
-        layoutStoneBlue.frame = R.drawable.frame_seablue;
+        layoutStoneBlue.backGround = R.color.stoneBlueVeryLite;
+        layoutStoneBlue.leftButton = R.drawable.button_left_stoneblue;
+        layoutStoneBlue.rightButton = R.drawable.button_right_stoneblue;
+        layoutStoneBlue.frame = R.drawable.frame_stoneblue;
         layoutContainer.add(layoutStoneBlue);
 
         ThemeClass layoutDarkClouds = new ThemeClass();
 
-        layoutDarkClouds.backGround = R.color.darkClouds;
-        layoutDarkClouds.leftButton = R.drawable.button_left_maroon;
-        layoutDarkClouds.rightButton = R.drawable.button_right_maroon;
-        layoutDarkClouds.frame = R.drawable.frame_seablue;
+        layoutDarkClouds.backGround = R.color.darkCloudsVeryLite;
+        layoutDarkClouds.leftButton = R.drawable.button_left_darkclouds;
+        layoutDarkClouds.rightButton = R.drawable.button_right_darkclouds;
+        layoutDarkClouds.frame = R.drawable.frame_darkclouds;
         layoutContainer.add(layoutDarkClouds);
 
         ThemeClass layoutDirtySilver = new ThemeClass();
 
-        layoutDirtySilver.backGround = R.color.dirtySilver;
-        layoutDirtySilver.leftButton = R.drawable.button_left_maroon;
-        layoutDirtySilver.rightButton = R.drawable.button_right_maroon;
-        layoutDirtySilver.frame = R.drawable.frame_seablue;
+        layoutDirtySilver.backGround = R.color.dirtySilverVeryLite;
+        layoutDirtySilver.leftButton = R.drawable.button_left_dirtysilver;
+        layoutDirtySilver.rightButton = R.drawable.button_right_dirtysilver;
+        layoutDirtySilver.frame = R.drawable.frame_dirtysilver;
         layoutContainer.add(layoutDirtySilver);
 
         ThemeClass layoutDeadOrange = new ThemeClass();
 
-        layoutDeadOrange.backGround = R.color.deadOrange;
-        layoutDeadOrange.leftButton = R.drawable.button_left_maroon;
-        layoutDeadOrange.rightButton = R.drawable.button_right_maroon;
-        layoutDeadOrange.frame = R.drawable.frame_seablue;
+        layoutDeadOrange.backGround = R.color.deadOrangeVeryLite;
+        layoutDeadOrange.leftButton = R.drawable.button_left_deadorange;
+        layoutDeadOrange.rightButton = R.drawable.button_right_deadorange;
+        layoutDeadOrange.frame = R.drawable.frame_deadorange;
         layoutContainer.add(layoutDeadOrange);
 
 
@@ -131,7 +132,7 @@ public class Game extends AppCompatActivity {
         buttonYes.startAnimation(myAnim);
 
 //        Toast.makeText(this,"Increment is: " + tapCounter,Toast.LENGTH_SHORT).show();
-        ThemeClass car;
+
         switch (tapCounter){
 
             case 1:
@@ -159,16 +160,22 @@ public class Game extends AppCompatActivity {
             case 4:
                 guessedNumber += 8;
                 textViewCards.setText(R.string.card_5);
+                car = layoutContainer.get(3);
+                setTheme(car);
                 break;
 
             case 5:
                 guessedNumber += 16;
                 textViewCards.setText(R.string.card_6);
+                car = layoutContainer.get(4);
+                setTheme(car);
                 break;
 
             case 6:
                 guessedNumber += 32;
                 textViewCards.setText(R.string.card_7);
+                car = layoutContainer.get(5);
+                setTheme(car);
                 break;
 
             case 7:
@@ -177,6 +184,8 @@ public class Game extends AppCompatActivity {
                 buttontryAgain.setVisibility(View.VISIBLE);
                 buttonYes.setVisibility(View.INVISIBLE);
                 buttonNo.setVisibility(View.INVISIBLE);
+                car = layoutContainer.get(6);
+                setTheme(car);
                 break;
 
 
@@ -197,26 +206,38 @@ public class Game extends AppCompatActivity {
 
             case 1:
                 textViewCards.setText(R.string.card_2);
+                car = layoutContainer.get(0);
+                setTheme(car);
                 break;
 
             case 2:
                 textViewCards.setText(R.string.card_3);
+                car = layoutContainer.get(1);
+                setTheme(car);
                 break;
 
             case 3:
                 textViewCards.setText(R.string.card_4);
+                car = layoutContainer.get(2);
+                setTheme(car);
                 break;
 
             case 4:
                 textViewCards.setText(R.string.card_5);
+                car = layoutContainer.get(3);
+                setTheme(car);
                 break;
 
             case 5:
                 textViewCards.setText(R.string.card_6);
+                car = layoutContainer.get(4);
+                setTheme(car);
                 break;
 
             case 6:
                 textViewCards.setText(R.string.card_7);
+                car = layoutContainer.get(5);
+                setTheme(car);
                 break;
 
             case 7:
@@ -224,6 +245,8 @@ public class Game extends AppCompatActivity {
                 buttontryAgain.setVisibility(View.VISIBLE);
                 buttonYes.setVisibility(View.INVISIBLE);
                 buttonNo.setVisibility(View.INVISIBLE);
+                car = layoutContainer.get(6);
+                setTheme(car);
                 break;
 
         }

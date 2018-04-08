@@ -10,7 +10,7 @@
         android:bottomRightRadius="0dp"
         />
     <solid
-        android:color="@color/jungleGreen"/>
+        android:color="@color/oldGold"/>
     <padding
         android:left="0dp"
         android:top="0dp"
@@ -23,6 +23,6 @@
         />
     <stroke
         android:width="3dp"
-        android:color="@color/jungleGreenLite"
+        android:color="@color/oldGoldLite"
         />
 </shape>

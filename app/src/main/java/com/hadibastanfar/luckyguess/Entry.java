@@ -26,7 +26,7 @@ public class Entry extends AppCompatActivity {
     public void letstart(View view) {
 
         LinearLayout currentLayout = findViewById(R.id.entry_layout);
-        currentLayout.setBackgroundColor(getResources().getColor(R.color.seaBlueLite));
+        currentLayout.setBackgroundColor(getResources().getColor(R.color.maroonLite));
 
         Button btnLUS = findViewById(R.id.buLetsStart);
 
@@ -48,7 +48,7 @@ public class Entry extends AppCompatActivity {
     public void howToPlay(View view) {
 
         LinearLayout currentLayout = findViewById(R.id.entry_layout);
-        currentLayout.setBackgroundColor(getResources().getColor(R.color.maroonLite));
+        currentLayout.setBackgroundColor(getResources().getColor(R.color.seaBlueLite));
 
         Button btnHTP = findViewById(R.id.buHowToPlay);
 

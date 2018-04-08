@@ -4,13 +4,13 @@
 
 
     <corners
-        android:topLeftRadius="0dp"
-        android:topRightRadius="100dp"
+        android:topLeftRadius="100dp"
+        android:topRightRadius="0dp"
         android:bottomLeftRadius="0dp"
         android:bottomRightRadius="0dp"
         />
     <solid
-        android:color="@color/jungleGreen"/>
+        android:color="@color/dirtySilver"/>
     <padding
         android:left="0dp"
         android:top="0dp"
@@ -23,6 +23,6 @@
         />
     <stroke
         android:width="3dp"
-        android:color="@color/jungleGreenLite"
+        android:color="@color/dirtySilverLite"
         />
 </shape>
