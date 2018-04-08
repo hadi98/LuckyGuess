@@ -2,6 +2,7 @@ package com.hadibastanfar.luckyguess;
 
 
 import android.content.Intent;
+import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.os.Handler;
 import android.support.v4.app.Fragment;
@@ -26,6 +27,8 @@ public class SlideActivity extends AppCompatActivity {
     private View indicator2;
     private View indicator3;
     private View indicator4;
+
+    public Drawable[] imgs;
 
     public String[] titles = {
             "Pick a number between 0 and 107"
@@ -74,6 +77,13 @@ public class SlideActivity extends AppCompatActivity {
 
         };
 
+        imgs = new Drawable[]{
+                 getResources().getDrawable(R.drawable.thinking)
+                ,getResources().getDrawable(R.drawable.lookingcarefuly)
+                ,getResources().getDrawable(R.drawable.yesorno)
+                ,getResources().getDrawable(R.drawable.correct)
+        };
+
         // Instantiate tapCounter ViewPager and tapCounter PagerAdapter.
         mPager = findViewById(R.id.pager);
         mPagerAdapter = new ScreenSlidePagerAdapter(getSupportFragmentManager());
@@ -86,13 +96,17 @@ public class SlideActivity extends AppCompatActivity {
 
     @Override
     public void onBackPressed() {
-        if (mPager.getCurrentItem() == 0) {
-            // If the user is currently looking at the first step, allow the system to handle the
-            super.onBackPressed();
-        } else {
-            // Otherwise, select the previous step.
-            mPager.setCurrentItem(mPager.getCurrentItem() - 1);
-        }
+
+        Intent intentbackpressed = new Intent(this,Entry.class);
+        startActivity(intentbackpressed);
+
+//        if (mPager.getCurrentItem() == 0) {
+//            // If the user is currently looking at the first step, allow the system to handle the
+//            super.onBackPressed();
+//        } else {
+//            // Otherwise, select the previous step.
+//            mPager.setCurrentItem(mPager.getCurrentItem() - 1);
+//        }
     }
 
     /**
@@ -112,6 +126,8 @@ public class SlideActivity extends AppCompatActivity {
             SlideFragment fragment = new SlideFragment();
             fragment.data = titles[position];
             fragment.color = colors[position];
+            fragment.backg = imgs[position];
+
             return fragment;
         }
 

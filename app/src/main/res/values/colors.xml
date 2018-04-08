@@ -10,9 +10,9 @@
     <color name="deadOrangeLite">#D35400</color>
     <color name="deadOrangeVeryLite">#DC7633</color>
 
-    <color name="darkClouds">#273746</color>
-    <color name="darkCloudsLite">#566573</color>
-    <color name="darkCloudsVeryLite">#808B96</color>
+    <color name="stormPurple">#6C3483</color>
+    <color name="stormPurpleLite">#8E44AD</color>
+    <color name="stormPurpleVeryLite">#A569BD</color>
 
     <color name="dirtySilver">#7B7D7D</color>
     <color name="dirtySilverLite">#979A9A</color>

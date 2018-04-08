@@ -1,5 +1,6 @@
 package com.hadibastanfar.luckyguess;
 
+import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
@@ -7,12 +8,15 @@ import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 public class SlideFragment extends Fragment {
      public TextView txv;
      public String data;
+     public Drawable backg;
      public int color;
+     public ImageView imageView;
 
 
     @Override
@@ -26,6 +30,8 @@ public class SlideFragment extends Fragment {
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
+        imageView = view.findViewById(R.id.imgview);
+        imageView.setBackground(backg);
         //so we have the view implemented we use the code below to change our background color from java code.
         view.setBackgroundColor(color);
 

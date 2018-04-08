@@ -2,7 +2,7 @@
     android:id="@+id/content"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/darkClouds"
+    android:background="@color/stormPurple"
     android:orientation="vertical">
 
 
@@ -11,12 +11,19 @@
         style="?android:textAppearanceMedium"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:fontFamily="@font/blur"
         android:gravity="center"
         android:lineSpacingMultiplier="1.2"
-        android:fontFamily="@font/blur"
-        android:textColor="#fff"
         android:padding="16dp"
-        android:text="Hello, World!" />
+        android:text="Hello, World!"
+        android:textColor="#fff" />
+    <ImageView
+        android:id="@+id/imgview"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:background="@drawable/thinking"
+        android:layout_marginBottom="90dp"
+        android:layout_gravity="center"/>
 
 
 

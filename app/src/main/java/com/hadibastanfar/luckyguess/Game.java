@@ -19,7 +19,6 @@ public class Game extends AppCompatActivity {
 
     public ConstraintLayout theLayout;
     public TextView textViewCards;
-    public int currentPage = 0;
     public int tapCounter = 0;
     public int guessedNumber = 0;
     public Button buttontryAgain, buttonYes, buttonNo;
@@ -47,14 +46,6 @@ public class Game extends AppCompatActivity {
         layoutMaroon.frame = R.drawable.frame_maroon;
         layoutContainer.add(layoutMaroon);
 
-        ThemeClass layoutSeaBlue = new ThemeClass();
-
-        layoutSeaBlue.backGround = R.color.seaBlueVeryLite;
-        layoutSeaBlue.leftButton = R.drawable.button_left_seablue;
-        layoutSeaBlue.rightButton = R.drawable.button_right_seablue;
-        layoutSeaBlue.frame = R.drawable.frame_seablue;
-        layoutContainer.add(layoutSeaBlue);
-
         ThemeClass layoutOldGold = new ThemeClass();
 
         layoutOldGold.backGround = R.color.oldGoldVeryLite;
@@ -62,14 +53,6 @@ public class Game extends AppCompatActivity {
         layoutOldGold.rightButton = R.drawable.button_right_oldgold;
         layoutOldGold.frame = R.drawable.frame_oldgold;
         layoutContainer.add(layoutOldGold);
-
-        ThemeClass layoutJungleGreen = new ThemeClass();
-
-        layoutJungleGreen.backGround = R.color.jungleGreenVeryLite;
-        layoutJungleGreen.leftButton = R.drawable.button_left_junglegreen;
-        layoutJungleGreen.rightButton = R.drawable.button_right_junglegreen;
-        layoutJungleGreen.frame = R.drawable.frame_junglegreen;
-        layoutContainer.add(layoutJungleGreen);
 
         ThemeClass layoutStoneBlue = new ThemeClass();
 
@@ -81,19 +64,11 @@ public class Game extends AppCompatActivity {
 
         ThemeClass layoutDarkClouds = new ThemeClass();
 
-        layoutDarkClouds.backGround = R.color.darkCloudsVeryLite;
-        layoutDarkClouds.leftButton = R.drawable.button_left_darkclouds;
-        layoutDarkClouds.rightButton = R.drawable.button_right_darkclouds;
-        layoutDarkClouds.frame = R.drawable.frame_darkclouds;
+        layoutDarkClouds.backGround = R.color.stormPurpleVeryLite;
+        layoutDarkClouds.leftButton = R.drawable.button_left_stormpurple;
+        layoutDarkClouds.rightButton = R.drawable.button_right_stormpurple;
+        layoutDarkClouds.frame = R.drawable.frame_stormpurple;
         layoutContainer.add(layoutDarkClouds);
-
-        ThemeClass layoutDirtySilver = new ThemeClass();
-
-        layoutDirtySilver.backGround = R.color.dirtySilverVeryLite;
-        layoutDirtySilver.leftButton = R.drawable.button_left_dirtysilver;
-        layoutDirtySilver.rightButton = R.drawable.button_right_dirtysilver;
-        layoutDirtySilver.frame = R.drawable.frame_dirtysilver;
-        layoutContainer.add(layoutDirtySilver);
 
         ThemeClass layoutDeadOrange = new ThemeClass();
 
@@ -102,6 +77,22 @@ public class Game extends AppCompatActivity {
         layoutDeadOrange.rightButton = R.drawable.button_right_deadorange;
         layoutDeadOrange.frame = R.drawable.frame_deadorange;
         layoutContainer.add(layoutDeadOrange);
+
+        ThemeClass layoutJungleGreen = new ThemeClass();
+
+        layoutJungleGreen.backGround = R.color.jungleGreenVeryLite;
+        layoutJungleGreen.leftButton = R.drawable.button_left_junglegreen;
+        layoutJungleGreen.rightButton = R.drawable.button_right_junglegreen;
+        layoutJungleGreen.frame = R.drawable.frame_junglegreen;
+        layoutContainer.add(layoutJungleGreen);
+
+        ThemeClass layoutSeaBlue = new ThemeClass();
+
+        layoutSeaBlue.backGround = R.color.seaBlueVeryLite;
+        layoutSeaBlue.leftButton = R.drawable.button_left_seablue;
+        layoutSeaBlue.rightButton = R.drawable.button_right_seablue;
+        layoutSeaBlue.frame = R.drawable.frame_seablue;
+        layoutContainer.add(layoutSeaBlue);
 
 
 
@@ -275,12 +266,10 @@ public class Game extends AppCompatActivity {
 
     public void increment(){
         tapCounter ++;
-        currentPage ++;
     }
 
 
     public void setTheme (ThemeClass theme) {
-
         theLayout.setBackgroundColor(getResources().getColor(theme.backGround));
         buttonYes.setBackground(getResources().getDrawable(theme.leftButton));
         buttonNo.setBackground(getResources().getDrawable(theme.rightButton));

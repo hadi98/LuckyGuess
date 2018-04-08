@@ -3,7 +3,7 @@
         android:radius="3dp"/>
 
     <solid
-        android:color="@color/darkCloudsLite"/>
+        android:color="@color/stormPurpleLite"/>
     <padding
         android:left="0dp"
         android:top="0dp"
@@ -14,5 +14,5 @@
         android:height="200dp"/>
     <stroke
         android:width="5dp"
-        android:color="@color/darkClouds"/>
+        android:color="@color/stormPurple"/>
 </shape>
