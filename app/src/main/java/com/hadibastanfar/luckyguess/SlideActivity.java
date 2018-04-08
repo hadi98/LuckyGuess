@@ -67,11 +67,10 @@ public class SlideActivity extends AppCompatActivity {
 
         colors  = new int[]{
 
-                 getResources().getColor(R.color.usc_gold)
-                ,getResources().getColor(R.color.pastel_blue)
-                ,getResources().getColor(R.color.medium_vermilion)
-                ,getResources().getColor(R.color.lilac_luster)
-                ,getResources().getColor(R.color.dark_slate_gray)
+                 getResources().getColor(R.color.stoneBlue)
+                ,getResources().getColor(R.color.deadOrange)
+                ,getResources().getColor(R.color.seaBlue)
+                ,getResources().getColor(R.color.jungleGreen)
 
         };
 

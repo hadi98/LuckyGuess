@@ -1,8 +1,8 @@
 package com.hadibastanfar.luckyguess;
 
-import android.animation.ObjectAnimator;
 import android.content.Intent;
 import android.os.Handler;
+import android.support.constraint.ConstraintLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -11,20 +11,99 @@ import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 import android.widget.Button;
 import android.widget.TextView;
-import android.widget.Toast;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class Game extends AppCompatActivity {
 
+    public ConstraintLayout theLayout;
     public TextView textViewCards;
+    public int currentPage = 0;
     public int tapCounter = 0;
     public int guessedNumber = 0;
     public Button buttontryAgain, buttonYes, buttonNo;
+
+    List<ThemeClass> layoutContainer = new ArrayList<>();
+
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,
                 WindowManager.LayoutParams.FLAG_FULLSCREEN);
         setContentView(R.layout.activity_game);
+
+
+        theLayout = findViewById(R.id.mainLayout);
+
+        ThemeClass layoutMaroon = new ThemeClass();
+
+        layoutMaroon.backGround = R.color.maroon;
+        layoutMaroon.leftButton = R.drawable.button_left_maroon;
+        layoutMaroon.rightButton = R.drawable.button_right_maroon;
+        layoutMaroon.frame = R.drawable.frame_maroon;
+        layoutContainer.add(layoutMaroon);
+
+        ThemeClass layoutSeaBlue = new ThemeClass();
+
+        layoutSeaBlue.backGround = R.color.seaBlue;
+        layoutSeaBlue.leftButton = R.drawable.button_left_seablue;
+        layoutSeaBlue.rightButton = R.drawable.button_right_seablue;
+        layoutSeaBlue.frame = R.drawable.frame_seablue;
+        layoutContainer.add(layoutSeaBlue);
+
+        ThemeClass layoutOldGold = new ThemeClass();
+
+        layoutOldGold.backGround = R.color.oldGold;
+        layoutOldGold.leftButton = R.drawable.button_left_maroon;
+        layoutOldGold.rightButton = R.drawable.button_right_maroon;
+        layoutOldGold.frame = R.drawable.frame_junglegreen;
+        layoutContainer.add(layoutOldGold);
+
+        ThemeClass layoutJungleGreen = new ThemeClass();
+
+        layoutJungleGreen.backGround = R.color.jungleGreen;
+        layoutJungleGreen.leftButton = R.drawable.button_left_maroon;
+        layoutJungleGreen.rightButton = R.drawable.button_right_maroon;
+        layoutJungleGreen.frame = R.drawable.frame_seablue;
+        layoutContainer.add(layoutJungleGreen);
+
+        ThemeClass layoutStoneBlue = new ThemeClass();
+
+        layoutStoneBlue.backGround = R.color.stoneBlue;
+        layoutStoneBlue.leftButton = R.drawable.button_left_maroon;
+        layoutStoneBlue.rightButton = R.drawable.button_right_maroon;
+        layoutStoneBlue.frame = R.drawable.frame_seablue;
+        layoutContainer.add(layoutStoneBlue);
+
+        ThemeClass layoutDarkClouds = new ThemeClass();
+
+        layoutDarkClouds.backGround = R.color.darkClouds;
+        layoutDarkClouds.leftButton = R.drawable.button_left_maroon;
+        layoutDarkClouds.rightButton = R.drawable.button_right_maroon;
+        layoutDarkClouds.frame = R.drawable.frame_seablue;
+        layoutContainer.add(layoutDarkClouds);
+
+        ThemeClass layoutDirtySilver = new ThemeClass();
+
+        layoutDirtySilver.backGround = R.color.dirtySilver;
+        layoutDirtySilver.leftButton = R.drawable.button_left_maroon;
+        layoutDirtySilver.rightButton = R.drawable.button_right_maroon;
+        layoutDirtySilver.frame = R.drawable.frame_seablue;
+        layoutContainer.add(layoutDirtySilver);
+
+        ThemeClass layoutDeadOrange = new ThemeClass();
+
+        layoutDeadOrange.backGround = R.color.deadOrange;
+        layoutDeadOrange.leftButton = R.drawable.button_left_maroon;
+        layoutDeadOrange.rightButton = R.drawable.button_right_maroon;
+        layoutDeadOrange.frame = R.drawable.frame_seablue;
+        layoutContainer.add(layoutDeadOrange);
+
+
+
 
         textViewCards = findViewById(R.id.txvCards);
 
@@ -46,29 +125,35 @@ public class Game extends AppCompatActivity {
     }
 
     public void yes(View view) {
-
         increment();
 
         final Animation myAnim = AnimationUtils.loadAnimation(this, R.anim.bounce);
         buttonYes.startAnimation(myAnim);
 
 //        Toast.makeText(this,"Increment is: " + tapCounter,Toast.LENGTH_SHORT).show();
-
+        ThemeClass car;
         switch (tapCounter){
 
             case 1:
                 guessedNumber += 1;
                 textViewCards.setText(R.string.card_2);
+                car = layoutContainer.get(0);
+                setTheme(car);
                 break;
 
             case 2:
                 guessedNumber += 2;
                 textViewCards.setText(R.string.card_3);
+                car = layoutContainer.get(1);
+                setTheme(car);
                 break;
+
 
             case 3:
                 guessedNumber += 4;
                 textViewCards.setText(R.string.card_4);
+                car = layoutContainer.get(2);
+                setTheme(car);
                 break;
 
             case 4:
@@ -166,6 +251,17 @@ public class Game extends AppCompatActivity {
     }
 
     public void increment(){
-        tapCounter += 1;
+        tapCounter ++;
+        currentPage ++;
     }
+
+
+    public void setTheme (ThemeClass theme) {
+
+        theLayout.setBackgroundColor(getResources().getColor(theme.backGround));
+        buttonYes.setBackground(getResources().getDrawable(theme.leftButton));
+        buttonNo.setBackground(getResources().getDrawable(theme.rightButton));
+        textViewCards.setBackground(getResources().getDrawable(theme.frame));
+    }
+
 }
