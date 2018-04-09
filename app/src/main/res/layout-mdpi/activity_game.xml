@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/mainLayout"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/seaBlueVeryLite"
+    tools:context="com.hadibastanfar.luckyguess.Game">
+
+    <TextView
+        android:id="@+id/txvCards"
+        android:layout_width="300dp"
+        android:layout_height="175dp"
+        android:layout_marginBottom="225dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:autoSizeStepGranularity="5sp"
+        android:autoSizeTextType="uniform"
+        android:background="@drawable/frame_seablue"
+        android:fontFamily="@font/sepcelite"
+        android:gravity="center"
+        android:lineSpacingExtra="10sp"
+        android:paddingEnd="16dp"
+        android:paddingStart="16dp"
+        android:text="@string/card_1"
+        android:textColor="#fff"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/txvAsk"
+        android:gravity="center"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="8dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="50dp"
+        android:fontFamily="@font/blur"
+        android:textColor="#fff"
+        android:text="@string/dusyn"
+        android:textSize="20sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <Button
+        android:onClick="no"
+        android:id="@+id/buNo"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:fontFamily="@font/blur"
+        android:background="@drawable/button_right_seablue"
+        android:text="NO"
+        android:textColor="#fff"
+        android:textSize="20sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
+
+    <Button
+        android:onClick="yes"
+        android:id="@+id/buYes"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:background="@drawable/button_left_seablue"
+        android:clickable="true"
+        android:fontFamily="@font/blur"
+        android:text="Yes"
+        android:textColor="#fff"
+        android:textSize="20sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        tools:ignore="OnClick" />
+
+    <Button
+        android:onClick="reset"
+        android:id="@+id/tryAgain"
+        android:layout_width="250dp"
+        android:layout_height="125dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginStart="8dp"
+        android:background="@drawable/mid_button"
+        android:text="Try Again?"
+        android:textSize="20sp"
+        android:fontFamily="@font/blur"
+        android:visibility="invisible"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+</android.support.constraint.ConstraintLayout>

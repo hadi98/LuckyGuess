@@ -35,7 +35,6 @@ public class Game extends AppCompatActivity {
                 WindowManager.LayoutParams.FLAG_FULLSCREEN);
         setContentView(R.layout.activity_game);
 
-
         theLayout = findViewById(R.id.mainLayout);
 
         ThemeClass layoutMaroon = new ThemeClass();
@@ -78,14 +77,6 @@ public class Game extends AppCompatActivity {
         layoutDeadOrange.frame = R.drawable.frame_deadorange;
         layoutContainer.add(layoutDeadOrange);
 
-        ThemeClass layoutJungleGreen = new ThemeClass();
-
-        layoutJungleGreen.backGround = R.color.jungleGreenVeryLite;
-        layoutJungleGreen.leftButton = R.drawable.button_left_junglegreen;
-        layoutJungleGreen.rightButton = R.drawable.button_right_junglegreen;
-        layoutJungleGreen.frame = R.drawable.frame_junglegreen;
-        layoutContainer.add(layoutJungleGreen);
-
         ThemeClass layoutSeaBlue = new ThemeClass();
 
         layoutSeaBlue.backGround = R.color.seaBlueVeryLite;
@@ -94,8 +85,13 @@ public class Game extends AppCompatActivity {
         layoutSeaBlue.frame = R.drawable.frame_seablue;
         layoutContainer.add(layoutSeaBlue);
 
+        ThemeClass layoutJungleGreen = new ThemeClass();
 
-
+        layoutJungleGreen.backGround = R.color.jungleGreenVeryLite;
+        layoutJungleGreen.leftButton = R.drawable.button_left_junglegreen;
+        layoutJungleGreen.rightButton = R.drawable.button_right_junglegreen;
+        layoutJungleGreen.frame = R.drawable.frame_junglegreen;
+        layoutContainer.add(layoutJungleGreen);
 
         textViewCards = findViewById(R.id.txvCards);
 
