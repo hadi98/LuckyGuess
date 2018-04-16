@@ -15,7 +15,7 @@ import android.widget.TextView;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Game extends AppCompatActivity {
+public class GameActivity extends AppCompatActivity {
 
     public ConstraintLayout theLayout;
     public TextView textViewCards;
@@ -108,7 +108,7 @@ public class Game extends AppCompatActivity {
 
     @Override
     public void onBackPressed() {
-        Intent intentbackpressed = new Intent(this,Entry.class);
+        Intent intentbackpressed = new Intent(this,EntryActivity.class);
         startActivity(intentbackpressed);
     }
 
@@ -244,20 +244,23 @@ public class Game extends AppCompatActivity {
         final Animation myAnim = AnimationUtils.loadAnimation(this, R.anim.bounce);
         buttontryAgain.startAnimation(myAnim);
 
+
         final Handler handler = new Handler();
         handler.postDelayed(new Runnable() {
             @Override
             public void run() {
+                recreate();
 
-                buttontryAgain.setVisibility(View.INVISIBLE);
-                buttonYes.setVisibility(View.VISIBLE);
-                buttonNo.setVisibility(View.VISIBLE);
-                tapCounter *= 0;
-                guessedNumber *= 0;
-                textViewCards.setText(R.string.card_1);
+//                buttontryAgain.setVisibility(View.INVISIBLE);
+//                buttonYes.setVisibility(View.VISIBLE);
+//                buttonNo.setVisibility(View.VISIBLE);
+//                tapCounter *= 0;
+//                guessedNumber *= 0;
+//                textViewCards.setText(R.string.card_1);
 
             }
         },100);
+
     }
 
     public void increment(){

@@ -6,7 +6,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/seaBlueVeryLite"
-    tools:context="com.hadibastanfar.luckyguess.Game">
+    tools:context="com.hadibastanfar.luckyguess.GameActivity">
 
     <TextView
         android:id="@+id/txvCards"
@@ -24,7 +24,7 @@
         android:lineSpacingExtra="20dp"
         android:paddingEnd="16dp"
         android:paddingStart="16dp"
-        android:text="@string/card_1"
+        android:text="@string/card_7"
         android:textColor="#fff"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"

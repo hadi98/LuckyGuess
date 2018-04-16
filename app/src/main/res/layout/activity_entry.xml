@@ -7,7 +7,7 @@
     android:id="@+id/entry_layout"
     android:layout_height="match_parent"
     android:background="@color/oldGold"
-    tools:context="com.hadibastanfar.luckyguess.Entry">
+    tools:context="com.hadibastanfar.luckyguess.EntryActivity">
     
 
 

@@ -6,7 +6,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.WindowManager;
 
-public class Splash extends AppCompatActivity {
+public class SplashActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -18,9 +18,9 @@ public class Splash extends AppCompatActivity {
         handler.postDelayed(new Runnable() {
             @Override
             public void run() {
-                Intent entryIntent = new Intent(Splash.this, Entry.class);
-                Splash.this.startActivity(entryIntent);
-                Splash.this.finish();
+                Intent entryIntent = new Intent(SplashActivity.this, EntryActivity.class);
+                SplashActivity.this.startActivity(entryIntent);
+                SplashActivity.this.finish();
             }
         },2000);
     }

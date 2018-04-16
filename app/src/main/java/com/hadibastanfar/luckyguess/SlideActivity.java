@@ -30,11 +30,18 @@ public class SlideActivity extends AppCompatActivity {
 
     public Drawable[] imgs;
 
-    public String[] titles = {
+    public String[] titlesEN = {
             "Pick a number between 0 and 107"
             ,"Then look carefully at the 7 different card that will be shown to you step by step "
             ,"If You see the number in the card just tap Yes if not then tap NO"
             ,"And when all the 7 cards are shown the number you you had in mind will appear on the cards frame"
+    };
+
+    public String[] titlesFA = {
+            "یه عدد بین ۰ و ۱۰۷ انتخاب کن "
+            ,"با دقت به کارت نگاه کن چون کارت قراره هفت بار عوض بشه"
+            ,"اگه عددی که تو ذهنت انتخاب کردی داخل کارت دیدی بله رو بزن اگه ندیدی هم که نه رو بزن"
+            ,"وقتی همه هفت تا کارت نشون داده شد عدد توی ذهنت روی کارت ظاهر میشه"
     };
 
     public int[] colors;
@@ -97,7 +104,7 @@ public class SlideActivity extends AppCompatActivity {
     @Override
     public void onBackPressed() {
 
-        Intent intentbackpressed = new Intent(this,Entry.class);
+        Intent intentbackpressed = new Intent(this,EntryActivity.class);
         startActivity(intentbackpressed);
 
 //        if (mPager.getCurrentItem() == 0) {
@@ -109,13 +116,6 @@ public class SlideActivity extends AppCompatActivity {
 //        }
     }
 
-    /**
-     * A simple pager adapter that represents 5 SlideFragment objects, in
-     * sequence.
-     */
-
-
-
     public class ScreenSlidePagerAdapter extends FragmentStatePagerAdapter {
         public ScreenSlidePagerAdapter(FragmentManager fm) {
             super(fm);
@@ -124,7 +124,7 @@ public class SlideActivity extends AppCompatActivity {
         @Override
         public Fragment getItem(int position) {
             SlideFragment fragment = new SlideFragment();
-            fragment.data = titles[position];
+            fragment.data = titlesEN[position];
             fragment.color = colors[position];
             fragment.backg = imgs[position];
 
@@ -174,7 +174,7 @@ public class SlideActivity extends AppCompatActivity {
     }
 
     public void ok(View view){
-        Intent intentok = new Intent(this,Game.class);
+        Intent intentok = new Intent(this,GameActivity.class);
         startActivity(intentok);
     }
 

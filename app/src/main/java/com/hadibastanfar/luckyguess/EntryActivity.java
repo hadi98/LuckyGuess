@@ -12,7 +12,7 @@ import android.view.animation.AnimationUtils;
 import android.widget.Button;
 import android.widget.LinearLayout;
 
-public class Entry extends AppCompatActivity {
+public class EntryActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -21,6 +21,13 @@ public class Entry extends AppCompatActivity {
                 WindowManager.LayoutParams.FLAG_FULLSCREEN);
         setContentView(R.layout.activity_entry);
 
+    }
+
+    @Override
+    public void onBackPressed() {
+        Intent intent = new Intent(this, EntryActivity.class);
+        intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+        finish();
     }
 
     public void letstart(View view) {
@@ -38,8 +45,8 @@ public class Entry extends AppCompatActivity {
             @Override
             public void run() {
 
-                Intent gameIntent = new Intent(Entry.this, Game.class);
-                Entry.this.startActivity(gameIntent);
+                Intent gameIntent = new Intent(EntryActivity.this, GameActivity.class);
+                EntryActivity.this.startActivity(gameIntent);
 
             }
         },250);
@@ -60,7 +67,7 @@ public class Entry extends AppCompatActivity {
             @Override
             public void run() {
 
-                Intent intentHTP = new Intent(Entry.this, SlideActivity.class);
+                Intent intentHTP = new Intent(EntryActivity.this, SlideActivity.class);
                 startActivity(intentHTP);
 
             }
