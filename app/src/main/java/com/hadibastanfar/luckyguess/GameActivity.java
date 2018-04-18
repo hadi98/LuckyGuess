@@ -101,15 +101,11 @@ public class GameActivity extends AppCompatActivity {
         buttonYes = findViewById(R.id.buYes);
         buttonNo = findViewById(R.id.buNo);
 
-        /**ObjectAnimator animation = ObjectAnimator.ofFloat(textViewCards, "translationX", 100f);
-        animation.setDuration(2000);
-        animation.start();*/
-    }
-
-    @Override
-    public void onBackPressed() {
-        Intent intentbackpressed = new Intent(this,EntryActivity.class);
-        startActivity(intentbackpressed);
+        /**
+         * ObjectAnimator animation = ObjectAnimator.ofFloat(textViewCards, "translationX", 100f);
+         *animation.setDuration(2000);
+         *animation.start();
+         **/
     }
 
     public void yes(View view) {
@@ -244,29 +240,18 @@ public class GameActivity extends AppCompatActivity {
         final Animation myAnim = AnimationUtils.loadAnimation(this, R.anim.bounce);
         buttontryAgain.startAnimation(myAnim);
 
-
         final Handler handler = new Handler();
         handler.postDelayed(new Runnable() {
             @Override
             public void run() {
                 recreate();
-
-//                buttontryAgain.setVisibility(View.INVISIBLE);
-//                buttonYes.setVisibility(View.VISIBLE);
-//                buttonNo.setVisibility(View.VISIBLE);
-//                tapCounter *= 0;
-//                guessedNumber *= 0;
-//                textViewCards.setText(R.string.card_1);
-
             }
         },100);
-
     }
 
     public void increment(){
         tapCounter ++;
     }
-
 
     public void setTheme (ThemeClass theme) {
         theLayout.setBackgroundColor(getResources().getColor(theme.backGround));
@@ -275,4 +260,8 @@ public class GameActivity extends AppCompatActivity {
         textViewCards.setBackground(getResources().getDrawable(theme.frame));
     }
 
+    public void onBackPressed(){
+        Intent entryIntent = new Intent(this, EntryActivity.class);
+        startActivity(entryIntent);
+    }
 }

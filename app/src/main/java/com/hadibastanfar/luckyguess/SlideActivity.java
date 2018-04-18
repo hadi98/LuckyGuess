@@ -1,7 +1,9 @@
 package com.hadibastanfar.luckyguess;
 
 
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.os.Handler;
@@ -27,6 +29,9 @@ public class SlideActivity extends AppCompatActivity {
     private View indicator2;
     private View indicator3;
     private View indicator4;
+
+
+    private SharedPreferences sharedPref;
 
     public Drawable[] imgs;
 
@@ -99,6 +104,8 @@ public class SlideActivity extends AppCompatActivity {
         mPager = findViewById(R.id.pager);
         mPager.setOnPageChangeListener(new WizardPageChangeListener());
         updateIndicators(0);
+
+        firstTimeDone();
     }
 
     @Override
@@ -258,5 +265,15 @@ public class SlideActivity extends AppCompatActivity {
                 indicator4.requestLayout();
                 break;
         }
+    }
+
+    public void firstTimeDone()
+    {
+
+        sharedPref = getSharedPreferences("guide", Context.MODE_PRIVATE);
+
+        SharedPreferences.Editor editor = sharedPref.edit();
+        editor.putBoolean("firstTime", false);
+        editor.apply();
     }
 }

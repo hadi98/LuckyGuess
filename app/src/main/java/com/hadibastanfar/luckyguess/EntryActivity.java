@@ -1,8 +1,9 @@
 package com.hadibastanfar.luckyguess;
 
+import android.content.Context;
 import  android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Handler;
-
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -12,7 +13,11 @@ import android.view.animation.AnimationUtils;
 import android.widget.Button;
 import android.widget.LinearLayout;
 
+
 public class EntryActivity extends AppCompatActivity {
+
+
+    private SharedPreferences sharedPref;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -21,13 +26,12 @@ public class EntryActivity extends AppCompatActivity {
                 WindowManager.LayoutParams.FLAG_FULLSCREEN);
         setContentView(R.layout.activity_entry);
 
-    }
+        sharedPref = getSharedPreferences("guide", Context.MODE_PRIVATE);
 
-    @Override
-    public void onBackPressed() {
-        Intent intent = new Intent(this, EntryActivity.class);
-        intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
-        finish();
+
+
+
+
     }
 
     public void letstart(View view) {
@@ -45,9 +49,15 @@ public class EntryActivity extends AppCompatActivity {
             @Override
             public void run() {
 
-                Intent gameIntent = new Intent(EntryActivity.this, GameActivity.class);
-                EntryActivity.this.startActivity(gameIntent);
-
+                if(sharedPref.getBoolean("firstTime",true))
+                {
+                    Intent intentHTP = new Intent(EntryActivity.this, SlideActivity.class);
+                    startActivity(intentHTP);
+                }
+                else {
+                    Intent gameIntent = new Intent(EntryActivity.this, GameActivity.class);
+                    EntryActivity.this.startActivity(gameIntent);
+                }
             }
         },250);
     }
@@ -73,4 +83,13 @@ public class EntryActivity extends AppCompatActivity {
             }
         },250);
     }
+
+    @Override
+    public void onBackPressed(){
+        Intent a = new Intent(Intent.ACTION_MAIN);
+        a.addCategory(Intent.CATEGORY_HOME);
+        a.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+        startActivity(a);
+    }
+    
 }
