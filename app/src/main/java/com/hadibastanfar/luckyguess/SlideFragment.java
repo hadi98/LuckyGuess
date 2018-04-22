@@ -1,5 +1,8 @@
 package com.hadibastanfar.luckyguess;
 
+import android.content.Context;
+import android.content.SharedPreferences;
+import android.graphics.Typeface;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
@@ -17,6 +20,7 @@ public class SlideFragment extends Fragment {
      public Drawable backg;
      public int color;
      public ImageView imageView;
+     private SharedPreferences sharedPrefLang;
 
 
     @Override
@@ -24,14 +28,22 @@ public class SlideFragment extends Fragment {
                              Bundle savedInstanceState) {
         ViewGroup rootView = (ViewGroup) inflater.inflate(
                 R.layout.fragment_slide, container, false);
+
         return rootView;
     }
 
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
+
+        sharedPrefLang = this.getActivity().getSharedPreferences("selectedLang", Context.MODE_PRIVATE);
+
+        Typeface fontFA = Typeface.createFromAsset(getActivity().getAssets(), "fonts/farsi.ttf");
+//        Typeface fontEN = Typeface.createFromAsset(getActivity().getAssets(), "fonts/blur.ttf");
+
         imageView = view.findViewById(R.id.imgview);
         imageView.setBackground(backg);
+
         //so we have the view implemented we use the code below to change our background color from java code.
         view.setBackgroundColor(color);
 
@@ -40,6 +52,17 @@ public class SlideFragment extends Fragment {
 
         //and we set it's text to any any value that is passed into data.
         txv.setText(data);
+
+        if (sharedPrefLang.getBoolean("farsi", true)){
+
+            txv.setTypeface(fontFA);
+
+        }
+//        else {
+//
+//            txv.setTypeface(fontEN);
+//
+//        }
     }
 }
 

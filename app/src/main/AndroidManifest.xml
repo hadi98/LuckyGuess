@@ -19,6 +19,9 @@
         <activity android:name=".EntryActivity" />
         <activity android:name=".SlideActivity"/>
         <activity android:name=".GameActivity"/>
+        <activity
+            android:name=".Pop"
+            android:theme="@style/Base.Theme.AppCompat.Dialog.Alert"/>
     </application>
 
 </manifest>

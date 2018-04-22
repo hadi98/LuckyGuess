@@ -16,7 +16,7 @@
         android:layout_marginStart="8dp"
         android:layout_marginTop="8dp"
         android:text="Lucky Guess"
-        android:fontFamily="@font/blur"
+        android:fontFamily="@font/comic"
         android:textSize="46sp"
         android:textColor="#fff"
         app:layout_constraintBottom_toBottomOf="parent"

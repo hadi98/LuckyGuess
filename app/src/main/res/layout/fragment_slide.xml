@@ -11,7 +11,7 @@
         style="?android:textAppearanceMedium"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:fontFamily="@font/blur"
+        android:fontFamily="@font/comic"
         android:gravity="center"
         android:lineSpacingMultiplier="1.2"
         android:padding="16dp"

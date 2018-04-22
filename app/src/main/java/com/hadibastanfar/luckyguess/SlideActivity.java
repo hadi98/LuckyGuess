@@ -4,6 +4,7 @@ package com.hadibastanfar.luckyguess;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.graphics.Typeface;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.os.Handler;
@@ -32,6 +33,7 @@ public class SlideActivity extends AppCompatActivity {
 
 
     private SharedPreferences sharedPref;
+    private SharedPreferences sharedPrefLang;
 
     public Drawable[] imgs;
 
@@ -71,6 +73,9 @@ public class SlideActivity extends AppCompatActivity {
         getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,
                 WindowManager.LayoutParams.FLAG_FULLSCREEN);
         setContentView(R.layout.activity_slide);
+
+        sharedPref = getSharedPreferences("guide", Context.MODE_PRIVATE);
+        sharedPrefLang = getSharedPreferences("selectedLang", Context.MODE_PRIVATE);
 
         okText = findViewById(R.id.oktxv);
         okText.setVisibility(View.INVISIBLE);
@@ -131,7 +136,13 @@ public class SlideActivity extends AppCompatActivity {
         @Override
         public Fragment getItem(int position) {
             SlideFragment fragment = new SlideFragment();
-            fragment.data = titlesEN[position];
+            if (sharedPrefLang.getBoolean("farsi", true)){
+
+                fragment.data = titlesFA[position];
+            }else {
+
+                fragment.data = titlesEN[position];
+            }
             fragment.color = colors[position];
             fragment.backg = imgs[position];
 
@@ -148,17 +159,10 @@ public class SlideActivity extends AppCompatActivity {
     private class WizardPageChangeListener implements ViewPager.OnPageChangeListener {
 
         @Override
-        public void onPageScrollStateChanged(int position) {
-
-
-
-        }
+        public void onPageScrollStateChanged(int position) {}
 
         @Override
-        public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
-
-
-        }
+        public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {}
 
         @Override
         public void onPageSelected(final int position) {
@@ -267,11 +271,7 @@ public class SlideActivity extends AppCompatActivity {
         }
     }
 
-    public void firstTimeDone()
-    {
-
-        sharedPref = getSharedPreferences("guide", Context.MODE_PRIVATE);
-
+    public void firstTimeDone() {
         SharedPreferences.Editor editor = sharedPref.edit();
         editor.putBoolean("firstTime", false);
         editor.apply();

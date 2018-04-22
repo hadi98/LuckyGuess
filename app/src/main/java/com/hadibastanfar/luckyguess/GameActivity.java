@@ -1,6 +1,9 @@
 package com.hadibastanfar.luckyguess;
 
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
+import android.graphics.Typeface;
 import android.os.Handler;
 import android.support.constraint.ConstraintLayout;
 import android.support.v7.app.AppCompatActivity;
@@ -21,12 +24,14 @@ public class GameActivity extends AppCompatActivity {
     public TextView textViewCards;
     public int tapCounter = 0;
     public int guessedNumber = 0;
-    public Button buttontryAgain, buttonYes, buttonNo;
+    public Button buttonTryAgain, buttonYes, buttonNo;
     public ThemeClass car;
+    public TextView question;
+
+    private SharedPreferences sharedPrefLang;
+
 
     List<ThemeClass> layoutContainer = new ArrayList<>();
-
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -35,6 +40,11 @@ public class GameActivity extends AppCompatActivity {
                 WindowManager.LayoutParams.FLAG_FULLSCREEN);
         setContentView(R.layout.activity_game);
 
+        question = findViewById(R.id.txvAsk);
+        textViewCards = findViewById(R.id.txvCards);
+        buttonTryAgain = findViewById(R.id.tryAgain);
+        buttonYes = findViewById(R.id.buYes);
+        buttonNo = findViewById(R.id.buNo);
         theLayout = findViewById(R.id.mainLayout);
 
         ThemeClass layoutMaroon = new ThemeClass();
@@ -93,13 +103,30 @@ public class GameActivity extends AppCompatActivity {
         layoutJungleGreen.frame = R.drawable.frame_junglegreen;
         layoutContainer.add(layoutJungleGreen);
 
-        textViewCards = findViewById(R.id.txvCards);
-
         textViewCards.setText(R.string.card_1);
 
-        buttontryAgain = findViewById(R.id.tryAgain);
-        buttonYes = findViewById(R.id.buYes);
-        buttonNo = findViewById(R.id.buNo);
+        sharedPrefLang = getSharedPreferences("selectedLang",Context.MODE_PRIVATE);
+
+        Typeface farsi_font = Typeface.createFromAsset(getAssets(), "fonts/farsi.ttf");
+
+        if (sharedPrefLang.getBoolean("farsi", true)){
+
+            textViewCards.setTypeface(farsi_font);
+
+            question.setText("عددی که انتخاب کردی تو این کارت هست؟");
+            question.setTypeface(farsi_font);
+
+            buttonYes.setText("آره");
+            buttonYes.setTypeface(farsi_font);
+
+            buttonNo.setText("نه");
+            buttonNo.setTypeface(farsi_font);
+
+            buttonTryAgain.setText("دوباره");
+            buttonTryAgain.setTypeface(farsi_font);
+        }
+
+
 
         /**
          * ObjectAnimator animation = ObjectAnimator.ofFloat(textViewCards, "translationX", 100f);
@@ -164,7 +191,7 @@ public class GameActivity extends AppCompatActivity {
             case 7:
                 guessedNumber += 64;
                 textViewCards.setText(guessedNumber + "");
-                buttontryAgain.setVisibility(View.VISIBLE);
+                buttonTryAgain.setVisibility(View.VISIBLE);
                 buttonYes.setVisibility(View.INVISIBLE);
                 buttonNo.setVisibility(View.INVISIBLE);
                 car = layoutContainer.get(6);
@@ -225,7 +252,7 @@ public class GameActivity extends AppCompatActivity {
 
             case 7:
                 textViewCards.setText("" + guessedNumber);
-                buttontryAgain.setVisibility(View.VISIBLE);
+                buttonTryAgain.setVisibility(View.VISIBLE);
                 buttonYes.setVisibility(View.INVISIBLE);
                 buttonNo.setVisibility(View.INVISIBLE);
                 car = layoutContainer.get(6);
@@ -238,7 +265,7 @@ public class GameActivity extends AppCompatActivity {
     public void reset(View view) {
 
         final Animation myAnim = AnimationUtils.loadAnimation(this, R.anim.bounce);
-        buttontryAgain.startAnimation(myAnim);
+        buttonTryAgain.startAnimation(myAnim);
 
         final Handler handler = new Handler();
         handler.postDelayed(new Runnable() {

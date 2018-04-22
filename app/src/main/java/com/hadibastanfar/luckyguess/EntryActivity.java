@@ -3,6 +3,7 @@ package com.hadibastanfar.luckyguess;
 import android.content.Context;
 import  android.content.Intent;
 import android.content.SharedPreferences;
+import android.graphics.Typeface;
 import android.os.Handler;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -16,8 +17,12 @@ import android.widget.LinearLayout;
 
 public class EntryActivity extends AppCompatActivity {
 
-
     private SharedPreferences sharedPref;
+    private SharedPreferences sharedPrefLang;
+    private SharedPreferences sharedPrefPUWfirstTime;
+
+    private Button play;
+    private Button teachme;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -26,12 +31,24 @@ public class EntryActivity extends AppCompatActivity {
                 WindowManager.LayoutParams.FLAG_FULLSCREEN);
         setContentView(R.layout.activity_entry);
 
+        play = findViewById(R.id.buLetsStart);
+        teachme = findViewById(R.id.buHowToPlay);
+
         sharedPref = getSharedPreferences("guide", Context.MODE_PRIVATE);
+        sharedPrefPUWfirstTime = getSharedPreferences("firsTime", Context.MODE_PRIVATE);
+        sharedPrefLang = getSharedPreferences("selectedLang", Context.MODE_PRIVATE);
 
+        if (sharedPrefPUWfirstTime.getBoolean("checktrue", true)){
+            startActivity(new Intent(this, Pop.class));
+        }
 
-
-
-
+        if (sharedPrefLang.getBoolean("farsi", true)){
+            Typeface farsi_font = Typeface.createFromAsset(getAssets(), "fonts/farsi.ttf");
+            teachme.setTypeface(farsi_font);
+            teachme.setText("راهنما");
+            play.setTypeface(farsi_font);
+            play.setText("شروع کن");
+        }
     }
 
     public void letstart(View view) {
@@ -49,8 +66,7 @@ public class EntryActivity extends AppCompatActivity {
             @Override
             public void run() {
 
-                if(sharedPref.getBoolean("firstTime",true))
-                {
+                if(sharedPref.getBoolean("firstTime",true)) {
                     Intent intentHTP = new Intent(EntryActivity.this, SlideActivity.class);
                     startActivity(intentHTP);
                 }
@@ -91,5 +107,4 @@ public class EntryActivity extends AppCompatActivity {
         a.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
         startActivity(a);
     }
-    
 }
