@@ -1,7 +1,7 @@
 package com.hadibastanfar.luckyguess;
 
 import android.content.Context;
-import  android.content.Intent;
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.graphics.Typeface;
 import android.os.Handler;

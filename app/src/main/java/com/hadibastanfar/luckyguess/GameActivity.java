@@ -22,11 +22,38 @@ public class GameActivity extends AppCompatActivity {
 
     public ConstraintLayout theLayout;
     public TextView textViewCards;
+    public TextView question;
+    public TextView header;
+    public TextView anouncement;
+    public View anouncementV;
     public int tapCounter = 0;
     public int guessedNumber = 0;
     public Button buttonTryAgain, buttonYes, buttonNo;
     public ThemeClass car;
-    public TextView question;
+    public Animation myAnim;
+    public Animation fadeIn;
+    public Animation fadeOut;
+    public String[] questionsFA = {
+
+            "خب حالا با دقت نگاه کن ببین عددی که تو ذهنت انتخاب کردی توی این کارت هست؟"
+            ,"عالیه دارم نزدیک تر میشم D:"
+            ,"خوبه ادامه بده و با دقت نگاه کن."
+            ,"کم مونده ادامه بده."
+            ,"خوبه فقظ 2 تا کارت بیشتر نمونده!!!"
+            ,"فقط یدونه کارت دیگه!"
+            ,"این دیگه کارت آخریه با دقت نگاه کن."
+            ,"و این هم عددی که انتخاب کردی..."
+    };
+    public String[] questionsEN = {
+            "Ok Now! check the card carefully and see if the number you picked in your mind is in the card above or not. "
+            ,"Great! getting closer."
+            ,"Very Nice! keep going and look carefully"
+            ,"Just a few more cards."
+            ,"Only 2 card Remains!"
+            ,"JUST!!! 1 more card."
+            ,"This is the last card I hope you checked all the cards carefully my guess would be correct."
+            ,"And the number you picked is..."
+    };
 
     private SharedPreferences sharedPrefLang;
 
@@ -40,6 +67,16 @@ public class GameActivity extends AppCompatActivity {
                 WindowManager.LayoutParams.FLAG_FULLSCREEN);
         setContentView(R.layout.activity_game);
 
+        setLayout();
+
+        myAnim = AnimationUtils.loadAnimation(this, R.anim.bounce);
+        fadeOut = AnimationUtils.loadAnimation(this, R.anim.zoom_out);
+        fadeIn = AnimationUtils.loadAnimation(this, R.anim.zoom_in);
+
+        anouncementV = findViewById(R.id.view);
+        anouncement = findViewById(R.id.anouncementText);
+        header = findViewById(R.id.headerText);
+
         question = findViewById(R.id.txvAsk);
         textViewCards = findViewById(R.id.txvCards);
         buttonTryAgain = findViewById(R.id.tryAgain);
@@ -47,6 +84,188 @@ public class GameActivity extends AppCompatActivity {
         buttonNo = findViewById(R.id.buNo);
         theLayout = findViewById(R.id.mainLayout);
 
+
+
+        textViewCards.setText(R.string.card_1);
+
+        sharedPrefLang = getSharedPreferences("selectedLang",Context.MODE_PRIVATE);
+
+        Typeface farsi_font = Typeface.createFromAsset(getAssets(), "fonts/farsi.ttf");
+        question.setText(questionsEN[0]);
+        if (sharedPrefLang.getBoolean("farsi", true)){
+
+            textViewCards.setTypeface(farsi_font);
+
+            question.setText(questionsFA[0]);
+            question.setTypeface(farsi_font);
+
+            buttonYes.setText("آره");
+            buttonYes.setTypeface(farsi_font);
+
+            buttonNo.setText("نه");
+            buttonNo.setTypeface(farsi_font);
+
+            buttonTryAgain.setText("دوباره");
+            buttonTryAgain.setTypeface(farsi_font);
+        }
+    }
+
+    public void yes(View view) {
+        increment();
+        setquestions();
+        buttonYes.startAnimation(myAnim);
+//        Toast.makeText(this,"Increment is: " + tapCounter,Toast.LENGTH_SHORT).show();
+
+        switch (tapCounter){
+
+            case 1:
+                guessedNumber += 1;
+                textViewCards.setText(R.string.card_2);
+                car = layoutContainer.get(0);
+                setTheme(car);
+                break;
+
+            case 2:
+                guessedNumber += 2;
+                textViewCards.setText(R.string.card_3);
+                car = layoutContainer.get(1);
+                setTheme(car);
+                break;
+
+
+            case 3:
+                guessedNumber += 4;
+                textViewCards.setText(R.string.card_4);
+                car = layoutContainer.get(2);
+                setTheme(car);
+                break;
+
+            case 4:
+                guessedNumber += 8;
+                textViewCards.setText(R.string.card_5);
+                car = layoutContainer.get(3);
+                setTheme(car);
+                break;
+
+            case 5:
+                guessedNumber += 16;
+                textViewCards.setText(R.string.card_6);
+                car = layoutContainer.get(4);
+                setTheme(car);
+                break;
+
+            case 6:
+                guessedNumber += 32;
+                textViewCards.setText(R.string.card_7);
+                car = layoutContainer.get(5);
+                setTheme(car);
+                break;
+
+            case 7:
+                guessedNumber += 64;
+                textViewCards.startAnimation(fadeIn);
+                anouncement.setText(guessedNumber + "");
+                anouncement.setVisibility(View.VISIBLE);
+                anouncementV.setVisibility(View.VISIBLE);
+                anouncementV.startAnimation(fadeOut);
+                buttonTryAgain.setVisibility(View.VISIBLE);
+                buttonYes.setVisibility(View.INVISIBLE);
+                buttonNo.setVisibility(View.INVISIBLE);
+                car = layoutContainer.get(6);
+                setTheme(car);
+                break;
+
+
+        }
+    }
+
+    public void no(View view) {
+        increment();
+        setquestions();
+        buttonNo.startAnimation(myAnim);
+//        Toast.makeText(this,"Increment is: " + tapCounter,Toast.LENGTH_SHORT).show();
+
+        switch (tapCounter){
+
+            case 1:
+                textViewCards.setText(R.string.card_2);
+                car = layoutContainer.get(0);
+                setTheme(car);
+                break;
+
+            case 2:
+                textViewCards.setText(R.string.card_3);
+                car = layoutContainer.get(1);
+                setTheme(car);
+                break;
+
+            case 3:
+                textViewCards.setText(R.string.card_4);
+                car = layoutContainer.get(2);
+                setTheme(car);
+                break;
+
+            case 4:
+                textViewCards.setText(R.string.card_5);
+                car = layoutContainer.get(3);
+                setTheme(car);
+                break;
+
+            case 5:
+                textViewCards.setText(R.string.card_6);
+                car = layoutContainer.get(4);
+                setTheme(car);
+                break;
+
+            case 6:
+                textViewCards.setText(R.string.card_7);
+                car = layoutContainer.get(5);
+                setTheme(car);
+                break;
+
+            case 7:
+                textViewCards.startAnimation(fadeIn);
+                anouncement.setText(guessedNumber + "");
+                anouncement.setVisibility(View.VISIBLE);
+                anouncementV.setVisibility(View.VISIBLE);
+                anouncementV.startAnimation(fadeOut);
+                buttonTryAgain.setVisibility(View.VISIBLE);
+                buttonTryAgain.startAnimation(fadeOut);
+                buttonYes.setVisibility(View.INVISIBLE);
+                buttonNo.setVisibility(View.INVISIBLE);
+                car = layoutContainer.get(6);
+                setTheme(car);
+                break;
+        }
+    }
+
+    public void reset(View view) {
+
+        final Animation myAnim = AnimationUtils.loadAnimation(this, R.anim.bounce);
+        buttonTryAgain.startAnimation(myAnim);
+
+        final Handler handler = new Handler();
+        handler.postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                recreate();
+            }
+        },100);
+    }
+    public void increment(){
+        tapCounter++;
+    }
+    public void setTheme (ThemeClass theme) {
+        theLayout.setBackgroundColor(getResources().getColor(theme.backGround));
+        buttonYes.setBackground(getResources().getDrawable(theme.leftButton));
+        buttonNo.setBackground(getResources().getDrawable(theme.rightButton));
+        textViewCards.setBackground(getResources().getDrawable(theme.frame));
+    }
+    public void onBackPressed(){
+        Intent entryIntent = new Intent(this, EntryActivity.class);
+        startActivity(entryIntent);
+    }
+    public void setLayout(){
         ThemeClass layoutMaroon = new ThemeClass();
 
         layoutMaroon.backGround = R.color.maroonVeryLite;
@@ -102,193 +321,73 @@ public class GameActivity extends AppCompatActivity {
         layoutJungleGreen.rightButton = R.drawable.button_right_junglegreen;
         layoutJungleGreen.frame = R.drawable.frame_junglegreen;
         layoutContainer.add(layoutJungleGreen);
-
-        textViewCards.setText(R.string.card_1);
-
-        sharedPrefLang = getSharedPreferences("selectedLang",Context.MODE_PRIVATE);
-
-        Typeface farsi_font = Typeface.createFromAsset(getAssets(), "fonts/farsi.ttf");
-
-        if (sharedPrefLang.getBoolean("farsi", true)){
-
-            textViewCards.setTypeface(farsi_font);
-
-            question.setText("عددی که انتخاب کردی تو این کارت هست؟");
-            question.setTypeface(farsi_font);
-
-            buttonYes.setText("آره");
-            buttonYes.setTypeface(farsi_font);
-
-            buttonNo.setText("نه");
-            buttonNo.setTypeface(farsi_font);
-
-            buttonTryAgain.setText("دوباره");
-            buttonTryAgain.setTypeface(farsi_font);
-        }
-
-
-
-        /**
-         * ObjectAnimator animation = ObjectAnimator.ofFloat(textViewCards, "translationX", 100f);
-         *animation.setDuration(2000);
-         *animation.start();
-         **/
     }
+    public void setquestions(){
+        if (sharedPrefLang.getBoolean("farsi", true)) {
 
-    public void yes(View view) {
-        increment();
+            switch (tapCounter) {
+                case 1:
+                    question.setText(questionsFA[1]);
+                    break;
 
-        final Animation myAnim = AnimationUtils.loadAnimation(this, R.anim.bounce);
-        buttonYes.startAnimation(myAnim);
+                case 2:
+                    question.setText(questionsFA[2]);
+                    break;
 
-//        Toast.makeText(this,"Increment is: " + tapCounter,Toast.LENGTH_SHORT).show();
+                case 3:
+                    question.setText(questionsFA[3]);
+                    break;
 
-        switch (tapCounter){
+                case 4:
+                    question.setText(questionsFA[4]);
+                    break;
 
-            case 1:
-                guessedNumber += 1;
-                textViewCards.setText(R.string.card_2);
-                car = layoutContainer.get(0);
-                setTheme(car);
-                break;
+                case 5:
+                    question.setText(questionsFA[5]);
+                    break;
 
-            case 2:
-                guessedNumber += 2;
-                textViewCards.setText(R.string.card_3);
-                car = layoutContainer.get(1);
-                setTheme(car);
-                break;
+                case 6:
+                    question.setText(questionsFA[6]);
+                    break;
 
-
-            case 3:
-                guessedNumber += 4;
-                textViewCards.setText(R.string.card_4);
-                car = layoutContainer.get(2);
-                setTheme(car);
-                break;
-
-            case 4:
-                guessedNumber += 8;
-                textViewCards.setText(R.string.card_5);
-                car = layoutContainer.get(3);
-                setTheme(car);
-                break;
-
-            case 5:
-                guessedNumber += 16;
-                textViewCards.setText(R.string.card_6);
-                car = layoutContainer.get(4);
-                setTheme(car);
-                break;
-
-            case 6:
-                guessedNumber += 32;
-                textViewCards.setText(R.string.card_7);
-                car = layoutContainer.get(5);
-                setTheme(car);
-                break;
-
-            case 7:
-                guessedNumber += 64;
-                textViewCards.setText(guessedNumber + "");
-                buttonTryAgain.setVisibility(View.VISIBLE);
-                buttonYes.setVisibility(View.INVISIBLE);
-                buttonNo.setVisibility(View.INVISIBLE);
-                car = layoutContainer.get(6);
-                setTheme(car);
-                break;
-
-
-        }
-    }
-
-    public void no(View view) {
-
-        increment();
-
-
-        final Animation myAnim = AnimationUtils.loadAnimation(this, R.anim.bounce);
-        buttonNo.startAnimation(myAnim);
-
-//        Toast.makeText(this,"Increment is: " + tapCounter,Toast.LENGTH_SHORT).show();
-
-        switch (tapCounter){
-
-            case 1:
-                textViewCards.setText(R.string.card_2);
-                car = layoutContainer.get(0);
-                setTheme(car);
-                break;
-
-            case 2:
-                textViewCards.setText(R.string.card_3);
-                car = layoutContainer.get(1);
-                setTheme(car);
-                break;
-
-            case 3:
-                textViewCards.setText(R.string.card_4);
-                car = layoutContainer.get(2);
-                setTheme(car);
-                break;
-
-            case 4:
-                textViewCards.setText(R.string.card_5);
-                car = layoutContainer.get(3);
-                setTheme(car);
-                break;
-
-            case 5:
-                textViewCards.setText(R.string.card_6);
-                car = layoutContainer.get(4);
-                setTheme(car);
-                break;
-
-            case 6:
-                textViewCards.setText(R.string.card_7);
-                car = layoutContainer.get(5);
-                setTheme(car);
-                break;
-
-            case 7:
-                textViewCards.setText("" + guessedNumber);
-                buttonTryAgain.setVisibility(View.VISIBLE);
-                buttonYes.setVisibility(View.INVISIBLE);
-                buttonNo.setVisibility(View.INVISIBLE);
-                car = layoutContainer.get(6);
-                setTheme(car);
-                break;
-
-        }
-    }
-
-    public void reset(View view) {
-
-        final Animation myAnim = AnimationUtils.loadAnimation(this, R.anim.bounce);
-        buttonTryAgain.startAnimation(myAnim);
-
-        final Handler handler = new Handler();
-        handler.postDelayed(new Runnable() {
-            @Override
-            public void run() {
-                recreate();
+                case 7:
+                    question.startAnimation(fadeIn);
+                    question.setVisibility(View.INVISIBLE);
+                    break;
             }
-        },100);
-    }
+        }else {
 
-    public void increment(){
-        tapCounter ++;
-    }
+            switch (tapCounter) {
+                case 1:
+                    question.setText(questionsEN[1]);
+                    break;
 
-    public void setTheme (ThemeClass theme) {
-        theLayout.setBackgroundColor(getResources().getColor(theme.backGround));
-        buttonYes.setBackground(getResources().getDrawable(theme.leftButton));
-        buttonNo.setBackground(getResources().getDrawable(theme.rightButton));
-        textViewCards.setBackground(getResources().getDrawable(theme.frame));
-    }
+                case 2:
+                    question.setText(questionsEN[2]);
+                    break;
 
-    public void onBackPressed(){
-        Intent entryIntent = new Intent(this, EntryActivity.class);
-        startActivity(entryIntent);
+                case 3:
+                    question.setText(questionsEN[3]);
+                    break;
+
+                case 4:
+                    question.setText(questionsEN[4]);
+                    break;
+
+                case 5:
+                    question.setText(questionsEN[5]);
+                    break;
+
+                case 6:
+                    question.setText(questionsEN[6]);
+                    break;
+
+                case 7:
+                    question.startAnimation(fadeIn);
+                    question.setVisibility(View.INVISIBLE);
+
+                    break;
+            }
+        }
     }
 }
