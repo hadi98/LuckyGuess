@@ -1,5 +1,6 @@
 package com.hadibastanfar.luckyguess;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -354,6 +355,7 @@ public class GameActivity extends AppCompatActivity {
     public void increment(){
         tapCounter++;
     }
+    @SuppressLint("NewApi")
     public void setTheme (ThemeClass theme) {
         theLayout.setBackgroundColor(getResources().getColor(theme.backGround));
         buttonYes.setBackground(getResources().getDrawable(theme.leftButton));
