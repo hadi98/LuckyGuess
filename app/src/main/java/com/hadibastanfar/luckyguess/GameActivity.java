@@ -30,9 +30,15 @@ public class GameActivity extends AppCompatActivity {
     public int guessedNumber = 0;
     public Button buttonTryAgain, buttonYes, buttonNo;
     public ThemeClass car;
-    public Animation myAnim;
-    public Animation fadeIn;
+    public Animation bounce;
+    public Animation bounceVerySlow;
+    public Animation zoomIn;
+    public Animation zoomOut;
     public Animation fadeOut;
+    public Animation fadeIn;
+    public Animation shrinkLeft;
+    public Animation shrinkRight;
+
     public String[] questionsFA = {
 
             "خب حالا با دقت نگاه کن ببین عددی که تو ذهنت انتخاب کردی توی این کارت هست؟"
@@ -68,16 +74,24 @@ public class GameActivity extends AppCompatActivity {
         setContentView(R.layout.activity_game);
 
         setLayout();
+        //Implemented Animations
+        fadeIn = AnimationUtils.loadAnimation(this, R.anim.fade_in);
+        fadeOut = AnimationUtils.loadAnimation(this, R.anim.fade_out);
+        bounce = AnimationUtils.loadAnimation(this, R.anim.bounce);
+        bounceVerySlow = AnimationUtils.loadAnimation(this, R.anim.bounce_slow);
+        bounceVerySlow = AnimationUtils.loadAnimation(this, R.anim.bounce_very_slow);
+        zoomIn = AnimationUtils.loadAnimation(this, R.anim.zoom_in);
+        zoomOut = AnimationUtils.loadAnimation(this, R.anim.zoom_out);
+        shrinkLeft = AnimationUtils.loadAnimation(this, R.anim.shrink_left);
+        shrinkRight = AnimationUtils.loadAnimation(this, R.anim.shrink_right);
 
-        myAnim = AnimationUtils.loadAnimation(this, R.anim.bounce);
-        fadeOut = AnimationUtils.loadAnimation(this, R.anim.zoom_out);
-        fadeIn = AnimationUtils.loadAnimation(this, R.anim.zoom_in);
-
+        //Implemented TextViews and Views
         anouncementV = findViewById(R.id.view);
         anouncement = findViewById(R.id.anouncementText);
         header = findViewById(R.id.headerText);
-
         question = findViewById(R.id.txvAsk);
+
+        //Implemented Buttons
         textViewCards = findViewById(R.id.txvCards);
         buttonTryAgain = findViewById(R.id.tryAgain);
         buttonYes = findViewById(R.id.buYes);
@@ -85,16 +99,22 @@ public class GameActivity extends AppCompatActivity {
         theLayout = findViewById(R.id.mainLayout);
 
 
-
+        //Set the first card at beginning
         textViewCards.setText(R.string.card_1);
 
+        //Implemented SharedPreferences
         sharedPrefLang = getSharedPreferences("selectedLang",Context.MODE_PRIVATE);
 
+        //Implemented Fonts
         Typeface farsi_font = Typeface.createFromAsset(getAssets(), "fonts/farsi.ttf");
         question.setText(questionsEN[0]);
         if (sharedPrefLang.getBoolean("farsi", true)){
 
+            header.setText("اینم عددی که تو ذهنت انتخاب کردی...");
+
             textViewCards.setTypeface(farsi_font);
+            anouncement.setTypeface(farsi_font);
+            header.setTypeface(farsi_font);
 
             question.setText(questionsFA[0]);
             question.setTypeface(farsi_font);
@@ -113,7 +133,7 @@ public class GameActivity extends AppCompatActivity {
     public void yes(View view) {
         increment();
         setquestions();
-        buttonYes.startAnimation(myAnim);
+        buttonYes.startAnimation(bounce);
 //        Toast.makeText(this,"Increment is: " + tapCounter,Toast.LENGTH_SHORT).show();
 
         switch (tapCounter){
@@ -163,26 +183,65 @@ public class GameActivity extends AppCompatActivity {
 
             case 7:
                 guessedNumber += 64;
-                textViewCards.startAnimation(fadeIn);
-                anouncement.setText(guessedNumber + "");
-                anouncement.setVisibility(View.VISIBLE);
-                anouncementV.setVisibility(View.VISIBLE);
-                anouncementV.startAnimation(fadeOut);
-                buttonTryAgain.setVisibility(View.VISIBLE);
-                buttonYes.setVisibility(View.INVISIBLE);
-                buttonNo.setVisibility(View.INVISIBLE);
                 car = layoutContainer.get(6);
                 setTheme(car);
+
+                //Buttons shrink and disappear
+                buttonYes.startAnimation(shrinkLeft);
+                buttonNo.startAnimation(shrinkRight);
+                question.startAnimation(zoomIn);
+                textViewCards.startAnimation(zoomIn);
+
+
+                final Handler handler1 = new Handler();
+                handler1.postDelayed(new Runnable() {
+                    @Override
+                    public void run() {
+
+                        header.startAnimation(bounceVerySlow);
+                        header.setVisibility(View.VISIBLE);
+                    }
+                },850);
+
+                final Handler handler2 = new Handler();
+                handler2.postDelayed(new Runnable() {
+                    @Override
+                    public void run() {
+
+                        anouncementV.startAnimation(bounceVerySlow);
+                        anouncementV.setVisibility(View.VISIBLE);
+
+                    }
+                },2000);
+
+                final Handler handler3 = new Handler();
+                handler3.postDelayed(new Runnable() {
+                    @Override
+                    public void run() {
+
+                        anouncement.startAnimation(bounceVerySlow);
+                        anouncement.setVisibility(View.VISIBLE);
+                        anouncement.setText(guessedNumber + "");
+
+                    }
+                },3100);
+
+                final Handler handler4 = new Handler();
+                handler4.postDelayed(new Runnable() {
+                    @Override
+                    public void run() {
+                        buttonTryAgain.startAnimation(bounceVerySlow);
+                        buttonTryAgain.setVisibility(View.VISIBLE);
+                    }
+                },4200);
                 break;
-
-
         }
     }
 
     public void no(View view) {
         increment();
         setquestions();
-        buttonNo.startAnimation(myAnim);
+        buttonNo.startAnimation(bounce);
 //        Toast.makeText(this,"Increment is: " + tapCounter,Toast.LENGTH_SHORT).show();
 
         switch (tapCounter){
@@ -224,17 +283,57 @@ public class GameActivity extends AppCompatActivity {
                 break;
 
             case 7:
-                textViewCards.startAnimation(fadeIn);
-                anouncement.setText(guessedNumber + "");
-                anouncement.setVisibility(View.VISIBLE);
-                anouncementV.setVisibility(View.VISIBLE);
-                anouncementV.startAnimation(fadeOut);
-                buttonTryAgain.setVisibility(View.VISIBLE);
-                buttonTryAgain.startAnimation(fadeOut);
-                buttonYes.setVisibility(View.INVISIBLE);
-                buttonNo.setVisibility(View.INVISIBLE);
                 car = layoutContainer.get(6);
                 setTheme(car);
+
+                //Buttons shrink and disappear
+                buttonYes.startAnimation(shrinkLeft);
+                buttonNo.startAnimation(shrinkRight);
+                question.startAnimation(zoomIn);
+                textViewCards.startAnimation(zoomIn);
+
+
+                final Handler handler1 = new Handler();
+                handler1.postDelayed(new Runnable() {
+                    @Override
+                    public void run() {
+
+                        header.startAnimation(bounceVerySlow);
+                        header.setVisibility(View.VISIBLE);
+                    }
+                },850);
+
+                final Handler handler2 = new Handler();
+                handler2.postDelayed(new Runnable() {
+                    @Override
+                    public void run() {
+
+                        anouncementV.startAnimation(bounceVerySlow);
+                        anouncementV.setVisibility(View.VISIBLE);
+
+                    }
+                },2000);
+
+                final Handler handler3 = new Handler();
+                handler3.postDelayed(new Runnable() {
+                    @Override
+                    public void run() {
+
+                        anouncement.startAnimation(bounceVerySlow);
+                        anouncement.setVisibility(View.VISIBLE);
+                        anouncement.setText(guessedNumber + "");
+
+                    }
+                },3100);
+
+                final Handler handler4 = new Handler();
+                handler4.postDelayed(new Runnable() {
+                    @Override
+                    public void run() {
+                        buttonTryAgain.startAnimation(bounceVerySlow);
+                        buttonTryAgain.setVisibility(View.VISIBLE);
+                    }
+                },4200);
                 break;
         }
     }
@@ -322,6 +421,7 @@ public class GameActivity extends AppCompatActivity {
         layoutJungleGreen.frame = R.drawable.frame_junglegreen;
         layoutContainer.add(layoutJungleGreen);
     }
+
     public void setquestions(){
         if (sharedPrefLang.getBoolean("farsi", true)) {
 
@@ -351,8 +451,16 @@ public class GameActivity extends AppCompatActivity {
                     break;
 
                 case 7:
-                    question.startAnimation(fadeIn);
-                    question.setVisibility(View.INVISIBLE);
+
+                    final Handler handler2 = new Handler();
+                    handler2.postDelayed(new Runnable() {
+                        @Override
+                        public void run() {
+                        }
+                    },750);
+
+//                    question.startAnimation(zoomIn);
+//
                     break;
             }
         }else {
@@ -383,8 +491,8 @@ public class GameActivity extends AppCompatActivity {
                     break;
 
                 case 7:
-                    question.startAnimation(fadeIn);
-                    question.setVisibility(View.INVISIBLE);
+
+//                    question.setVisibility(View.INVISIBLE);
 
                     break;
             }
