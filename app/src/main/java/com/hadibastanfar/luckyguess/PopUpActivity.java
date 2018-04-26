@@ -10,7 +10,7 @@ import android.view.View;
 import android.view.WindowManager;
 import android.widget.Button;
 
-public class Pop extends Activity {
+public class PopUpActivity extends Activity {
 
     private SharedPreferences sharedPrefLang;
     private SharedPreferences sharedPrefPUWfirstTime;

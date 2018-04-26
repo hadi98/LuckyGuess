@@ -26,7 +26,7 @@
         tools:layout_editor_absoluteY="201dp" />
 
     <Button
-        android:onClick="letstart"
+        android:onClick="letStart"
         android:id="@+id/buLetsStart"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"

@@ -21,25 +21,15 @@ import java.util.List;
 
 public class GameActivity extends AppCompatActivity {
 
+    public Typeface farsi_font;
     public ConstraintLayout theLayout;
-    public TextView textViewCards;
-    public TextView question;
-    public TextView header;
-    public TextView anouncement;
-    public View anouncementV;
-    public int tapCounter = 0;
-    public int guessedNumber = 0;
+    public TextView textViewCards,question,header,numberReveal;
+    public View announcementView;
+    public int tapCounter,guessedNumber = 0;
     public Button buttonTryAgain, buttonYes, buttonNo;
     public ThemeClass car;
-    public Animation bounce;
-    public Animation bounceVerySlow;
-    public Animation zoomIn;
-    public Animation zoomOut;
-    public Animation fadeOut;
-    public Animation fadeIn;
-    public Animation shrinkLeft;
-    public Animation shrinkRight;
-
+    public Animation bounce,bounceVerySlow,zoomIn,zoomOut,fadeOut,fadeIn,shrinkLeft,shrinkRight;
+    private SharedPreferences sharedPrefLang;
     public String[] questionsFA = {
 
             "خب حالا با دقت نگاه کن ببین عددی که تو ذهنت انتخاب کردی توی این کارت هست؟"
@@ -61,10 +51,6 @@ public class GameActivity extends AppCompatActivity {
             ,"This is the last card I hope you checked all the cards carefully my guess would be correct."
             ,"And the number you picked is..."
     };
-
-    private SharedPreferences sharedPrefLang;
-
-
     List<ThemeClass> layoutContainer = new ArrayList<>();
 
     @Override
@@ -74,8 +60,13 @@ public class GameActivity extends AppCompatActivity {
                 WindowManager.LayoutParams.FLAG_FULLSCREEN);
         setContentView(R.layout.activity_game);
 
-        setLayout();
-        //Implemented Animations
+        //Execute mainLayout
+        theLayout = findViewById(R.id.mainLayout);
+
+        //Execute Layouts
+        layoutPresets();
+
+        //Execute Animations
         fadeIn = AnimationUtils.loadAnimation(this, R.anim.fade_in);
         fadeOut = AnimationUtils.loadAnimation(this, R.anim.fade_out);
         bounce = AnimationUtils.loadAnimation(this, R.anim.bounce);
@@ -86,56 +77,36 @@ public class GameActivity extends AppCompatActivity {
         shrinkLeft = AnimationUtils.loadAnimation(this, R.anim.shrink_left);
         shrinkRight = AnimationUtils.loadAnimation(this, R.anim.shrink_right);
 
-        //Implemented TextViews and Views
-        anouncementV = findViewById(R.id.view);
-        anouncement = findViewById(R.id.anouncementText);
-        header = findViewById(R.id.headerText);
-        question = findViewById(R.id.txvAsk);
+        //Execute TextViews and Views
+        announcementView = findViewById(R.id.numberRevealView);
+        numberReveal = findViewById(R.id.numberReveal);
+        header = findViewById(R.id.headerAnnouncementText);
+        question = findViewById(R.id.midPositionText);
 
-        //Implemented Buttons
+        //Execute Buttons
         textViewCards = findViewById(R.id.txvCards);
         buttonTryAgain = findViewById(R.id.tryAgain);
         buttonYes = findViewById(R.id.buYes);
         buttonNo = findViewById(R.id.buNo);
-        theLayout = findViewById(R.id.mainLayout);
 
-
-        //Set the first card at beginning
+        //Set the first card at the onCreate
         textViewCards.setText(R.string.card_1);
 
-        //Implemented SharedPreferences
+        //Execute SharedPreferences
         sharedPrefLang = getSharedPreferences("selectedLang",Context.MODE_PRIVATE);
 
-        //Implemented Fonts
-        Typeface farsi_font = Typeface.createFromAsset(getAssets(), "fonts/farsi.ttf");
+        //Implemented Persian Font
+        farsi_font = Typeface.createFromAsset(getAssets(), "fonts/farsi.ttf");
         question.setText(questionsEN[0]);
         if (sharedPrefLang.getBoolean("farsi", true)){
-
-            header.setText("اینم عددی که تو ذهنت انتخاب کردی...");
-
-            textViewCards.setTypeface(farsi_font);
-            anouncement.setTypeface(farsi_font);
-            header.setTypeface(farsi_font);
-
-            question.setText(questionsFA[0]);
-            question.setTypeface(farsi_font);
-
-            buttonYes.setText("آره");
-            buttonYes.setTypeface(farsi_font);
-
-            buttonNo.setText("نه");
-            buttonNo.setTypeface(farsi_font);
-
-            buttonTryAgain.setText("دوباره");
-            buttonTryAgain.setTypeface(farsi_font);
+            fontFA();
         }
     }
 
     public void yes(View view) {
         increment();
-        setquestions();
+        midText();
         buttonYes.startAnimation(bounce);
-//        Toast.makeText(this,"Increment is: " + tapCounter,Toast.LENGTH_SHORT).show();
 
         switch (tapCounter){
 
@@ -193,36 +164,53 @@ public class GameActivity extends AppCompatActivity {
                 question.startAnimation(zoomIn);
                 textViewCards.startAnimation(zoomIn);
 
-
-                final Handler handler1 = new Handler();
-                handler1.postDelayed(new Runnable() {
+                zoomIn.setAnimationListener(new Animation.AnimationListener() {
                     @Override
-                    public void run() {
+                    public void onAnimationStart(Animation animation) {
+
+                    }
+
+                    @Override
+                    public void onAnimationEnd(Animation animation) {
 
                         header.startAnimation(bounceVerySlow);
                         header.setVisibility(View.VISIBLE);
-                    }
-                },850);
 
-                final Handler handler2 = new Handler();
-                handler2.postDelayed(new Runnable() {
+                    }
+
                     @Override
-                    public void run() {
-
-                        anouncementV.startAnimation(bounceVerySlow);
-                        anouncementV.setVisibility(View.VISIBLE);
+                    public void onAnimationRepeat(Animation animation) {
 
                     }
-                },2000);
+                });
+
+                bounceVerySlow.setAnimationListener(new Animation.AnimationListener() {
+                    @Override
+                    public void onAnimationStart(Animation animation) {
+
+                    }
+
+                    @Override
+                    public void onAnimationEnd(Animation animation) {
+
+                        announcementView.startAnimation(bounceVerySlow);
+                        announcementView.setVisibility(View.VISIBLE);
+                    }
+
+                    @Override
+                    public void onAnimationRepeat(Animation animation) {
+
+                    }
+                });
 
                 final Handler handler3 = new Handler();
                 handler3.postDelayed(new Runnable() {
                     @Override
                     public void run() {
 
-                        anouncement.startAnimation(bounceVerySlow);
-                        anouncement.setVisibility(View.VISIBLE);
-                        anouncement.setText(guessedNumber + "");
+                        numberReveal.startAnimation(bounceVerySlow);
+                        numberReveal.setVisibility(View.VISIBLE);
+                        numberReveal.setText(guessedNumber + "");
 
                     }
                 },3100);
@@ -241,7 +229,7 @@ public class GameActivity extends AppCompatActivity {
 
     public void no(View view) {
         increment();
-        setquestions();
+        midText();
         buttonNo.startAnimation(bounce);
 //        Toast.makeText(this,"Increment is: " + tapCounter,Toast.LENGTH_SHORT).show();
 
@@ -309,8 +297,8 @@ public class GameActivity extends AppCompatActivity {
                     @Override
                     public void run() {
 
-                        anouncementV.startAnimation(bounceVerySlow);
-                        anouncementV.setVisibility(View.VISIBLE);
+                        announcementView.startAnimation(bounceVerySlow);
+                        announcementView.setVisibility(View.VISIBLE);
 
                     }
                 },2000);
@@ -320,9 +308,9 @@ public class GameActivity extends AppCompatActivity {
                     @Override
                     public void run() {
 
-                        anouncement.startAnimation(bounceVerySlow);
-                        anouncement.setVisibility(View.VISIBLE);
-                        anouncement.setText(guessedNumber + "");
+                        numberReveal.startAnimation(bounceVerySlow);
+                        numberReveal.setVisibility(View.VISIBLE);
+                        numberReveal.setText(guessedNumber + "");
 
                     }
                 },3100);
@@ -352,9 +340,11 @@ public class GameActivity extends AppCompatActivity {
             }
         },100);
     }
+
     public void increment(){
         tapCounter++;
     }
+
     @SuppressLint("NewApi")
     public void setTheme (ThemeClass theme) {
         theLayout.setBackgroundColor(getResources().getColor(theme.backGround));
@@ -362,11 +352,13 @@ public class GameActivity extends AppCompatActivity {
         buttonNo.setBackground(getResources().getDrawable(theme.rightButton));
         textViewCards.setBackground(getResources().getDrawable(theme.frame));
     }
+
     public void onBackPressed(){
         Intent entryIntent = new Intent(this, EntryActivity.class);
         startActivity(entryIntent);
     }
-    public void setLayout(){
+
+    public void layoutPresets(){
         ThemeClass layoutMaroon = new ThemeClass();
 
         layoutMaroon.backGround = R.color.maroonVeryLite;
@@ -424,7 +416,7 @@ public class GameActivity extends AppCompatActivity {
         layoutContainer.add(layoutJungleGreen);
     }
 
-    public void setquestions(){
+    public void midText(){
         if (sharedPrefLang.getBoolean("farsi", true)) {
 
             switch (tapCounter) {
@@ -451,22 +443,8 @@ public class GameActivity extends AppCompatActivity {
                 case 6:
                     question.setText(questionsFA[6]);
                     break;
-
-                case 7:
-
-                    final Handler handler2 = new Handler();
-                    handler2.postDelayed(new Runnable() {
-                        @Override
-                        public void run() {
-                        }
-                    },750);
-
-//                    question.startAnimation(zoomIn);
-//
-                    break;
             }
         }else {
-
             switch (tapCounter) {
                 case 1:
                     question.setText(questionsEN[1]);
@@ -491,13 +469,27 @@ public class GameActivity extends AppCompatActivity {
                 case 6:
                     question.setText(questionsEN[6]);
                     break;
-
-                case 7:
-
-//                    question.setVisibility(View.INVISIBLE);
-
-                    break;
             }
         }
+    }
+
+    public void fontFA(){
+        header.setText("اینم عددی که تو ذهنت انتخاب کردی...");
+
+        textViewCards.setTypeface(farsi_font);
+        numberReveal.setTypeface(farsi_font);
+        header.setTypeface(farsi_font);
+
+        question.setText(questionsFA[0]);
+        question.setTypeface(farsi_font);
+
+        buttonYes.setText("آره");
+        buttonYes.setTypeface(farsi_font);
+
+        buttonNo.setText("نه");
+        buttonNo.setTypeface(farsi_font);
+
+        buttonTryAgain.setText("دوباره");
+        buttonTryAgain.setTypeface(farsi_font);
     }
 }

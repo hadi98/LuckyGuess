@@ -4,7 +4,6 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.graphics.Typeface;
-import android.os.Handler;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -17,12 +16,9 @@ import android.widget.LinearLayout;
 
 public class EntryActivity extends AppCompatActivity {
 
-    private SharedPreferences sharedPref;
-    private SharedPreferences sharedPrefLang;
-    private SharedPreferences sharedPrefPUWfirstTime;
-
-    private Button play;
-    private Button teachme;
+    private SharedPreferences sharedPref,sharedPrefLang, sharedPreFirstTime;
+    private Button play,teachme;
+    private Animation myAnim;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -31,17 +27,24 @@ public class EntryActivity extends AppCompatActivity {
                 WindowManager.LayoutParams.FLAG_FULLSCREEN);
         setContentView(R.layout.activity_entry);
 
+        //Execute Animations
+        myAnim = AnimationUtils.loadAnimation(this, R.anim.bounce_slow);
+
+        //Execute Buttons
         play = findViewById(R.id.buLetsStart);
         teachme = findViewById(R.id.buHowToPlay);
 
+        //Execute SharedPreferences
         sharedPref = getSharedPreferences("guide", Context.MODE_PRIVATE);
-        sharedPrefPUWfirstTime = getSharedPreferences("firsTime", Context.MODE_PRIVATE);
+        sharedPreFirstTime = getSharedPreferences("firsTime", Context.MODE_PRIVATE);
         sharedPrefLang = getSharedPreferences("selectedLang", Context.MODE_PRIVATE);
 
-        if (sharedPrefPUWfirstTime.getBoolean("checktrue", true)){
-            startActivity(new Intent(this, Pop.class));
+        //Check if it's the first time is that app is being opened
+        if (sharedPreFirstTime.getBoolean("checktrue", true)){
+            startActivity(new Intent(this, PopUpActivity.class));
         }
 
+        //Check to see which Lang is selected
         if (sharedPrefLang.getBoolean("farsi", true)){
             Typeface farsi_font = Typeface.createFromAsset(getAssets(), "fonts/farsi.ttf");
             teachme.setTypeface(farsi_font);
@@ -51,21 +54,18 @@ public class EntryActivity extends AppCompatActivity {
         }
     }
 
-    public void letstart(View view) {
-
+    public void letStart(View view) {
         LinearLayout currentLayout = findViewById(R.id.entry_layout);
         currentLayout.setBackgroundColor(getResources().getColor(R.color.maroonVeryLite));
 
-        Button btnLUS = findViewById(R.id.buLetsStart);
-
-        final Animation myAnim = AnimationUtils.loadAnimation(this, R.anim.bounce_slow);
-        btnLUS.startAnimation(myAnim);
-
-        final Handler handler = new Handler();
-        handler.postDelayed(new Runnable() {
+        play.startAnimation(myAnim);
+        myAnim.setAnimationListener(new Animation.AnimationListener() {
             @Override
-            public void run() {
+            public void onAnimationStart(Animation animation) {
 
+            }
+            @Override
+            public void onAnimationEnd(Animation animation) {
                 if(sharedPref.getBoolean("firstTime",true)) {
                     Intent intentHTP = new Intent(EntryActivity.this, SlideActivity.class);
                     startActivity(intentHTP);
@@ -75,29 +75,35 @@ public class EntryActivity extends AppCompatActivity {
                     EntryActivity.this.startActivity(gameIntent);
                 }
             }
-        },250);
+            @Override
+            public void onAnimationRepeat(Animation animation) {
+
+            }
+        });
     }
 
     public void howToPlay(View view) {
-
         LinearLayout currentLayout = findViewById(R.id.entry_layout);
         currentLayout.setBackgroundColor(getResources().getColor(R.color.seaBlueVeryLite));
 
-        Button btnHTP = findViewById(R.id.buHowToPlay);
-
-        final Animation myAnim1 = AnimationUtils.loadAnimation(this, R.anim.bounce_slow);
-        btnHTP.startAnimation(myAnim1);
-
-        final Handler handler = new Handler();
-        handler.postDelayed(new Runnable() {
+        teachme.startAnimation(myAnim);
+        myAnim.setAnimationListener(new Animation.AnimationListener() {
             @Override
-            public void run() {
+            public void onAnimationStart(Animation animation) {
+
+            }
+            @Override
+            public void onAnimationEnd(Animation animation) {
 
                 Intent intentHTP = new Intent(EntryActivity.this, SlideActivity.class);
                 startActivity(intentHTP);
 
             }
-        },250);
+            @Override
+            public void onAnimationRepeat(Animation animation) {
+
+            }
+        });
     }
 
     @Override

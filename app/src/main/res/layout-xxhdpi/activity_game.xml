@@ -16,10 +16,7 @@
         android:layout_marginEnd="8dp"
         android:layout_marginStart="8dp"
         android:layout_marginTop="32dp"
-        android:autoSizeStepGranularity="4sp"
-        android:autoSizeTextType="uniform"
-        android:autoSizeMaxTextSize="30sp"
-        android:autoSizeMinTextSize="17sp"
+        android:textSize="20sp"
         android:background="@drawable/frame_seablue"
         android:fontFamily="@font/comic"
         android:gravity="center"
@@ -33,9 +30,46 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
+    <View
+        android:id="@+id/numberRevealView"
+        android:layout_width="150dp"
+        android:layout_height="150dp"
+        android:layout_marginBottom="8dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginLeft="8dp"
+        android:layout_marginRight="8dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:background="@drawable/circle"
+        android:visibility="invisible"
+        app:layout_constraintBottom_toTopOf="@+id/midPositionText"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/headerAnnouncementText" />
+
+    <TextView
+        android:id="@+id/numberReveal"
+        android:layout_width="150dp"
+        android:layout_height="150dp"
+        android:layout_marginBottom="8dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginLeft="8dp"
+        android:layout_marginRight="8dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:gravity="center"
+        android:textColor="#FFF"
+        android:textSize="50sp"
+        android:fontFamily="@font/comic"
+        android:visibility="invisible"
+        app:layout_constraintBottom_toTopOf="@+id/midPositionText"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/headerAnnouncementText" />
+
     <TextView
         android:gravity="center"
-        android:id="@+id/txvAsk"
+        android:id="@+id/midPositionText"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginBottom="8dp"
@@ -45,7 +79,7 @@
         android:fontFamily="@font/comic"
         android:textColor="#fff"
         android:text="@string/dusyn"
-        android:textSize="29sp"
+        android:textSize="20sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -96,7 +130,7 @@
 
     <TextView
         android:gravity="center"
-        android:id="@+id/headerText"
+        android:id="@+id/headerAnnouncementText"
         android:layout_width="300dp"
         android:layout_height="wrap_content"
         android:layout_marginBottom="500dp"
@@ -117,40 +151,6 @@
 
 
 
-    <View
-        android:id="@+id/view"
-        android:layout_width="150dp"
-        android:layout_height="150dp"
-        android:layout_marginBottom="8dp"
-        android:layout_marginEnd="8dp"
-        android:layout_marginLeft="8dp"
-        android:layout_marginRight="8dp"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="8dp"
-        android:background="@drawable/circle"
-        android:visibility="invisible"
-        app:layout_constraintBottom_toTopOf="@+id/txvAsk"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/headerText" />
 
-    <TextView
-        android:id="@+id/anouncementText"
-        android:layout_width="150dp"
-        android:layout_height="150dp"
-        android:layout_marginBottom="8dp"
-        android:layout_marginEnd="8dp"
-        android:layout_marginLeft="8dp"
-        android:layout_marginRight="8dp"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="8dp"
-        android:gravity="center"
-        android:textColor="#FFF"
-        android:textSize="50sp"
-        android:visibility="invisible"
-        app:layout_constraintBottom_toTopOf="@+id/txvAsk"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/headerText" />
 
 </android.support.constraint.ConstraintLayout>
