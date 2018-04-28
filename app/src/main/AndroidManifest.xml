@@ -9,19 +9,29 @@
         android:roundIcon="@drawable/launcher"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".SplashActivity">
+        <activity android:name=".SplashActivity"
+                  android:screenOrientation="portrait" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
+
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".EntryActivity" />
-        <activity android:name=".SlideActivity"/>
-        <activity android:name=".GameActivity"/>
+        <activity android:name=".EntryActivity"
+                  android:screenOrientation="portrait" />
+        <activity android:name=".SlideActivity"
+                  android:screenOrientation="portrait" />
+        <activity android:name=".GameActivity"
+                  android:screenOrientation="portrait" />
         <activity
             android:name=".PopUpActivity"
+            android:screenOrientation="portrait"
             android:theme="@style/Base.Theme.AppCompat.Dialog.Alert"/>
+        <meta-data
+            android:name="io.fabric.ApiKey"
+            android:value="54b9e2ef2cc86065243e9b28681cc5de0f80fa18" />
     </application>
 
+    <uses-permission android:name="android.permission.INTERNET" />
 </manifest>

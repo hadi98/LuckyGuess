@@ -28,7 +28,7 @@ public class GameActivity extends AppCompatActivity {
     public int tapCounter,guessedNumber = 0;
     public Button buttonTryAgain, buttonYes, buttonNo;
     public ThemeClass car;
-    public Animation bounce,bounceVerySlow,zoomIn,zoomOut,fadeOut,fadeIn,shrinkLeft,shrinkRight;
+    public Animation bounce,bounceVerySlow,bounceVerySlow1,bounceVerySlow2,bounceVerySlow3,zoomIn,zoomOut,fadeOut,fadeIn,shrinkLeft,shrinkRight;
     private SharedPreferences sharedPrefLang;
     public String[] questionsFA = {
 
@@ -70,8 +70,10 @@ public class GameActivity extends AppCompatActivity {
         fadeIn = AnimationUtils.loadAnimation(this, R.anim.fade_in);
         fadeOut = AnimationUtils.loadAnimation(this, R.anim.fade_out);
         bounce = AnimationUtils.loadAnimation(this, R.anim.bounce);
-        bounceVerySlow = AnimationUtils.loadAnimation(this, R.anim.bounce_slow);
         bounceVerySlow = AnimationUtils.loadAnimation(this, R.anim.bounce_very_slow);
+        bounceVerySlow1 = AnimationUtils.loadAnimation(this, R.anim.bounce_very_slow);
+        bounceVerySlow2 = AnimationUtils.loadAnimation(this, R.anim.bounce_very_slow);
+        bounceVerySlow3 = AnimationUtils.loadAnimation(this, R.anim.bounce_very_slow);
         zoomIn = AnimationUtils.loadAnimation(this, R.anim.zoom_in);
         zoomOut = AnimationUtils.loadAnimation(this, R.anim.zoom_out);
         shrinkLeft = AnimationUtils.loadAnimation(this, R.anim.shrink_left);
@@ -164,6 +166,9 @@ public class GameActivity extends AppCompatActivity {
                 question.startAnimation(zoomIn);
                 textViewCards.startAnimation(zoomIn);
 
+                buttonYes.setEnabled(false);
+                buttonNo.setEnabled(false);
+
                 zoomIn.setAnimationListener(new Animation.AnimationListener() {
                     @Override
                     public void onAnimationStart(Animation animation) {
@@ -193,7 +198,7 @@ public class GameActivity extends AppCompatActivity {
                     @Override
                     public void onAnimationEnd(Animation animation) {
 
-                        announcementView.startAnimation(bounceVerySlow);
+                        announcementView.startAnimation(bounceVerySlow1);
                         announcementView.setVisibility(View.VISIBLE);
                     }
 
@@ -203,26 +208,47 @@ public class GameActivity extends AppCompatActivity {
                     }
                 });
 
-                final Handler handler3 = new Handler();
-                handler3.postDelayed(new Runnable() {
+                bounceVerySlow1.setAnimationListener(new Animation.AnimationListener() {
                     @Override
-                    public void run() {
+                    public void onAnimationStart(Animation animation) {
 
-                        numberReveal.startAnimation(bounceVerySlow);
+                    }
+
+                    @Override
+                    public void onAnimationEnd(Animation animation) {
+
+                        numberReveal.setText("" + guessedNumber);
+                        numberReveal.startAnimation(bounceVerySlow2);
                         numberReveal.setVisibility(View.VISIBLE);
-                        numberReveal.setText(guessedNumber + "");
 
                     }
-                },3100);
 
-                final Handler handler4 = new Handler();
-                handler4.postDelayed(new Runnable() {
                     @Override
-                    public void run() {
-                        buttonTryAgain.startAnimation(bounceVerySlow);
-                        buttonTryAgain.setVisibility(View.VISIBLE);
+                    public void onAnimationRepeat(Animation animation) {
+
                     }
-                },4200);
+                });
+
+                bounceVerySlow2.setAnimationListener(new Animation.AnimationListener() {
+                    @Override
+                    public void onAnimationStart(Animation animation) {
+
+                    }
+
+                    @Override
+                    public void onAnimationEnd(Animation animation) {
+
+                        buttonTryAgain.startAnimation(bounceVerySlow3);
+                        buttonTryAgain.setVisibility(View.VISIBLE);
+
+                    }
+
+                    @Override
+                    public void onAnimationRepeat(Animation animation) {
+
+                    }
+                });
+
                 break;
         }
     }
@@ -281,48 +307,89 @@ public class GameActivity extends AppCompatActivity {
                 question.startAnimation(zoomIn);
                 textViewCards.startAnimation(zoomIn);
 
+                buttonYes.setEnabled(false);
+                buttonNo.setEnabled(false);
 
-                final Handler handler1 = new Handler();
-                handler1.postDelayed(new Runnable() {
+                zoomIn.setAnimationListener(new Animation.AnimationListener() {
                     @Override
-                    public void run() {
+                    public void onAnimationStart(Animation animation) {
+
+                    }
+
+                    @Override
+                    public void onAnimationEnd(Animation animation) {
 
                         header.startAnimation(bounceVerySlow);
                         header.setVisibility(View.VISIBLE);
+
                     }
-                },850);
 
-                final Handler handler2 = new Handler();
-                handler2.postDelayed(new Runnable() {
                     @Override
-                    public void run() {
+                    public void onAnimationRepeat(Animation animation) {
 
-                        announcementView.startAnimation(bounceVerySlow);
+                    }
+                });
+
+                bounceVerySlow.setAnimationListener(new Animation.AnimationListener() {
+                    @Override
+                    public void onAnimationStart(Animation animation) {
+
+                    }
+
+                    @Override
+                    public void onAnimationEnd(Animation animation) {
+
+                        announcementView.startAnimation(bounceVerySlow1);
                         announcementView.setVisibility(View.VISIBLE);
+                    }
+
+                    @Override
+                    public void onAnimationRepeat(Animation animation) {
 
                     }
-                },2000);
+                });
 
-                final Handler handler3 = new Handler();
-                handler3.postDelayed(new Runnable() {
+                bounceVerySlow1.setAnimationListener(new Animation.AnimationListener() {
                     @Override
-                    public void run() {
+                    public void onAnimationStart(Animation animation) {
 
-                        numberReveal.startAnimation(bounceVerySlow);
+                    }
+
+                    @Override
+                    public void onAnimationEnd(Animation animation) {
+
+                        numberReveal.setText("" + guessedNumber);
+                        numberReveal.startAnimation(bounceVerySlow2);
                         numberReveal.setVisibility(View.VISIBLE);
-                        numberReveal.setText(guessedNumber + "");
 
                     }
-                },3100);
 
-                final Handler handler4 = new Handler();
-                handler4.postDelayed(new Runnable() {
                     @Override
-                    public void run() {
-                        buttonTryAgain.startAnimation(bounceVerySlow);
-                        buttonTryAgain.setVisibility(View.VISIBLE);
+                    public void onAnimationRepeat(Animation animation) {
+
                     }
-                },4200);
+                });
+
+                bounceVerySlow2.setAnimationListener(new Animation.AnimationListener() {
+                    @Override
+                    public void onAnimationStart(Animation animation) {
+
+                    }
+
+                    @Override
+                    public void onAnimationEnd(Animation animation) {
+
+                        buttonTryAgain.startAnimation(bounceVerySlow3);
+                        buttonTryAgain.setVisibility(View.VISIBLE);
+
+                    }
+
+                    @Override
+                    public void onAnimationRepeat(Animation animation) {
+
+                    }
+                });
+
                 break;
         }
     }
@@ -332,13 +399,22 @@ public class GameActivity extends AppCompatActivity {
         final Animation myAnim = AnimationUtils.loadAnimation(this, R.anim.bounce);
         buttonTryAgain.startAnimation(myAnim);
 
-        final Handler handler = new Handler();
-        handler.postDelayed(new Runnable() {
+        myAnim.setAnimationListener(new Animation.AnimationListener() {
             @Override
-            public void run() {
+            public void onAnimationStart(Animation animation) {
+
+            }
+
+            @Override
+            public void onAnimationEnd(Animation animation) {
                 recreate();
             }
-        },100);
+
+            @Override
+            public void onAnimationRepeat(Animation animation) {
+
+            }
+        });
     }
 
     public void increment(){
