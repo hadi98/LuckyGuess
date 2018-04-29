@@ -39,16 +39,16 @@ public class SlideActivity extends AppCompatActivity {
 
     public String[] titlesEN = {
             "Pick a number between 0 and 107"
-            ,"Then look carefully at the 7 different card that will be shown to you step by step "
+            ,"Then look carefully at the 7 different cards that will be shown to you step by step "
             ,"If You see the number in the card just tap Yes if not then tap NO"
-            ,"And when all the 7 cards are shown the number you you had in mind will appear on the cards frame"
+            ,"And when all the 7 cards are shown the number you had in mind will appear on the cards frame"
     };
 
     public String[] titlesFA = {
             "یه عدد بین ۰ و ۱۰۷ انتخاب کن "
             ,"با دقت به کارت نگاه کن چون کارت قراره هفت بار عوض بشه"
             ,"اگه عددی که تو ذهنت انتخاب کردی داخل کارت دیدی بله رو بزن اگه ندیدی هم که نه رو بزن"
-            ,"وقتی همه هفت تا کارت نشون داده شد عدد توی ذهنت روی کارت ظاهر میشه"
+            ,"وقتی همه هفت تا کارت نشون داده شد عدد توی ذهنت روی دایره ظاهر میشه"
     };
 
     public int[] colors;

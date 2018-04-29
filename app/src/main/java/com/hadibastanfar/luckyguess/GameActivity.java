@@ -28,7 +28,13 @@ public class GameActivity extends AppCompatActivity {
     public int tapCounter,guessedNumber = 0;
     public Button buttonTryAgain, buttonYes, buttonNo;
     public ThemeClass car;
-    public Animation bounce,bounceVerySlow,bounceVerySlow1,bounceVerySlow2,bounceVerySlow3,zoomIn,zoomOut,fadeOut,fadeIn,shrinkLeft,shrinkRight;
+    public Animation
+             bounce
+            ,bounceVerySlow,bounceVerySlow1,bounceVerySlow2,bounceVerySlow3
+            ,zoomIn,zoomOut
+            ,fadeOut,fadeIn
+            ,shrinkLeft,shrinkRight;
+
     private SharedPreferences sharedPrefLang;
     public String[] questionsFA = {
 
@@ -42,13 +48,13 @@ public class GameActivity extends AppCompatActivity {
             ,"و این هم عددی که انتخاب کردی..."
     };
     public String[] questionsEN = {
-            "Ok Now! check the card carefully and see if the number you picked in your mind is in the card above or not. "
+            "Ok Now! check the card carefully and see if the number you picked in your mind is in the card above or not? "
             ,"Great! getting closer."
-            ,"Very Nice! keep going and look carefully"
+            ,"Very Nice! keep going and look carefully."
             ,"Just a few more cards."
             ,"Only 2 card Remains!"
             ,"JUST!!! 1 more card."
-            ,"This is the last card I hope you checked all the cards carefully my guess would be correct."
+            ,"This is the last card I hope you checked all the cards carefully so my guess would be correct."
             ,"And the number you picked is..."
     };
     List<ThemeClass> layoutContainer = new ArrayList<>();
