@@ -1,7 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.hadibastanfar.luckyguess">
-
+    <uses-permission android:name="android.permission.INTERNET"/>
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION"/> <!-- optional -->
     <application
         android:allowBackup="true"
         android:icon="@drawable/launcher"
@@ -31,7 +32,19 @@
         <meta-data
             android:name="io.fabric.ApiKey"
             android:value="54b9e2ef2cc86065243e9b28681cc5de0f80fa18" />
-    </application>
 
-    <uses-permission android:name="android.permission.INTERNET" />
+        <activity
+            android:name="ir.adad.client.AdadActivity"
+            android:configChanges="keyboard|keyboardHidden|orientation|screenLayout|uiMode|screenSize|smallestScreenSize"
+            android:theme="@android:style/Theme.Translucent"/>
+
+        <meta-data
+            android:name="AdadTestMode"
+            android:value="false"/>
+
+        <meta-data
+            android:name="AdadToken"
+            android:value="b13d5b3ab1ee448db54317674e0cb754" />
+
+    </application>
 </manifest>

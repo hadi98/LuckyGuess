@@ -6,8 +6,18 @@
     android:layout_width="match_parent"
     android:id="@+id/entry_layout"
     android:layout_height="match_parent"
-    android:background="@color/oldGold"
+    android:background="@color/seaBlue"
     tools:context="com.hadibastanfar.luckyguess.EntryActivity">
+    <ir.adad.client.Banner
+        android:layout_gravity="center"
+        android:id="@+id/banner_ad_view"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
 
 

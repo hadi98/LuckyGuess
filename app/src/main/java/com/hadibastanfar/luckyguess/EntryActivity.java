@@ -13,6 +13,8 @@ import android.view.animation.AnimationUtils;
 import android.widget.Button;
 import android.widget.LinearLayout;
 
+import ir.adad.client.Adad;
+
 
 public class EntryActivity extends AppCompatActivity {
 
@@ -55,6 +57,7 @@ public class EntryActivity extends AppCompatActivity {
     }
 
     public void letStart(View view) {
+        Adad.showInterstitialAd(EntryActivity.this);
         LinearLayout currentLayout = findViewById(R.id.entry_layout);
         currentLayout.setBackgroundColor(getResources().getColor(R.color.maroonVeryLite));
 
@@ -83,6 +86,7 @@ public class EntryActivity extends AppCompatActivity {
     }
 
     public void howToPlay(View view) {
+        Adad.showInterstitialAd(EntryActivity.this);
         LinearLayout currentLayout = findViewById(R.id.entry_layout);
         currentLayout.setBackgroundColor(getResources().getColor(R.color.seaBlueVeryLite));
 

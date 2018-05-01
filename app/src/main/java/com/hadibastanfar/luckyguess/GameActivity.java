@@ -5,7 +5,6 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.graphics.Typeface;
-import android.os.Handler;
 import android.support.constraint.ConstraintLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -16,28 +15,22 @@ import android.view.animation.AnimationUtils;
 import android.widget.Button;
 import android.widget.TextView;
 
-import java.util.ArrayList;
-import java.util.List;
+import ir.adad.client.Adad;
 
 public class GameActivity extends AppCompatActivity {
 
+    public  ThemeClass themeClass;
     public Typeface farsi_font;
     public ConstraintLayout theLayout;
     public TextView textViewCards,question,header,numberReveal;
     public View announcementView;
     public int tapCounter,guessedNumber = 0;
     public Button buttonTryAgain, buttonYes, buttonNo;
-    public ThemeClass car;
-    public Animation
-             bounce
-            ,bounceVerySlow,bounceVerySlow1,bounceVerySlow2,bounceVerySlow3
-            ,zoomIn,zoomOut
-            ,fadeOut,fadeIn
-            ,shrinkLeft,shrinkRight;
-
+    public ThemeClass theme;
+    public Animation  bounce ,bounceVerySlow,bounceVerySlow1,bounceVerySlow2,bounceVerySlow3
+                     ,zoomIn,zoomOut,fadeOut,fadeIn,shrinkLeft,shrinkRight;
     private SharedPreferences sharedPrefLang;
     public String[] questionsFA = {
-
             "خب حالا با دقت نگاه کن ببین عددی که تو ذهنت انتخاب کردی توی این کارت هست؟"
             ,"عالیه دارم نزدیک تر میشم D:"
             ,"خوبه ادامه بده و با دقت نگاه کن."
@@ -57,7 +50,6 @@ public class GameActivity extends AppCompatActivity {
             ,"This is the last card I hope you checked all the cards carefully so my guess would be correct."
             ,"And the number you picked is..."
     };
-    List<ThemeClass> layoutContainer = new ArrayList<>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -66,11 +58,13 @@ public class GameActivity extends AppCompatActivity {
                 WindowManager.LayoutParams.FLAG_FULLSCREEN);
         setContentView(R.layout.activity_game);
 
+
+        themeClass = new ThemeClass();
         //Execute mainLayout
         theLayout = findViewById(R.id.mainLayout);
 
         //Execute Layouts
-        layoutPresets();
+        themeClass.layoutPresets();
 
         //Execute Animations
         fadeIn = AnimationUtils.loadAnimation(this, R.anim.fade_in);
@@ -121,50 +115,50 @@ public class GameActivity extends AppCompatActivity {
             case 1:
                 guessedNumber += 1;
                 textViewCards.setText(R.string.card_2);
-                car = layoutContainer.get(0);
-                setTheme(car);
+                theme = themeClass.layoutContainer.get(0);
+                setTheme(theme);
                 break;
 
             case 2:
                 guessedNumber += 2;
                 textViewCards.setText(R.string.card_3);
-                car = layoutContainer.get(1);
-                setTheme(car);
+                theme = themeClass.layoutContainer.get(1);
+                setTheme(theme);
                 break;
 
 
             case 3:
                 guessedNumber += 4;
                 textViewCards.setText(R.string.card_4);
-                car = layoutContainer.get(2);
-                setTheme(car);
+                theme = themeClass.layoutContainer.get(2);
+                setTheme(theme);
                 break;
 
             case 4:
                 guessedNumber += 8;
                 textViewCards.setText(R.string.card_5);
-                car = layoutContainer.get(3);
-                setTheme(car);
+                theme = themeClass.layoutContainer.get(3);
+                setTheme(theme);
                 break;
 
             case 5:
                 guessedNumber += 16;
                 textViewCards.setText(R.string.card_6);
-                car = layoutContainer.get(4);
-                setTheme(car);
+                theme = themeClass.layoutContainer.get(4);
+                setTheme(theme);
                 break;
 
             case 6:
                 guessedNumber += 32;
                 textViewCards.setText(R.string.card_7);
-                car = layoutContainer.get(5);
-                setTheme(car);
+                theme = themeClass.layoutContainer.get(5);
+                setTheme(theme);
                 break;
 
             case 7:
                 guessedNumber += 64;
-                car = layoutContainer.get(6);
-                setTheme(car);
+                theme = themeClass.layoutContainer.get(6);
+                setTheme(theme);
 
                 //Buttons shrink and disappear
                 buttonYes.startAnimation(shrinkLeft);
@@ -269,43 +263,43 @@ public class GameActivity extends AppCompatActivity {
 
             case 1:
                 textViewCards.setText(R.string.card_2);
-                car = layoutContainer.get(0);
-                setTheme(car);
+                theme = themeClass.layoutContainer.get(0);
+                setTheme(theme);
                 break;
 
             case 2:
                 textViewCards.setText(R.string.card_3);
-                car = layoutContainer.get(1);
-                setTheme(car);
+                theme = themeClass.layoutContainer.get(1);
+                setTheme(theme);
                 break;
 
             case 3:
                 textViewCards.setText(R.string.card_4);
-                car = layoutContainer.get(2);
-                setTheme(car);
+                theme = themeClass.layoutContainer.get(2);
+                setTheme(theme);
                 break;
 
             case 4:
                 textViewCards.setText(R.string.card_5);
-                car = layoutContainer.get(3);
-                setTheme(car);
+                theme = themeClass.layoutContainer.get(3);
+                setTheme(theme);
                 break;
 
             case 5:
                 textViewCards.setText(R.string.card_6);
-                car = layoutContainer.get(4);
-                setTheme(car);
+                theme = themeClass.layoutContainer.get(4);
+                setTheme(theme);
                 break;
 
             case 6:
                 textViewCards.setText(R.string.card_7);
-                car = layoutContainer.get(5);
-                setTheme(car);
+                theme = themeClass.layoutContainer.get(5);
+                setTheme(theme);
                 break;
 
             case 7:
-                car = layoutContainer.get(6);
-                setTheme(car);
+                theme = themeClass.layoutContainer.get(6);
+                setTheme(theme);
 
                 //Buttons shrink and disappear
                 buttonYes.startAnimation(shrinkLeft);
@@ -402,6 +396,7 @@ public class GameActivity extends AppCompatActivity {
 
     public void reset(View view) {
 
+        Adad.showInterstitialAd(GameActivity.this);
         final Animation myAnim = AnimationUtils.loadAnimation(this, R.anim.bounce);
         buttonTryAgain.startAnimation(myAnim);
 
@@ -438,64 +433,6 @@ public class GameActivity extends AppCompatActivity {
     public void onBackPressed(){
         Intent entryIntent = new Intent(this, EntryActivity.class);
         startActivity(entryIntent);
-    }
-
-    public void layoutPresets(){
-        ThemeClass layoutMaroon = new ThemeClass();
-
-        layoutMaroon.backGround = R.color.maroonVeryLite;
-        layoutMaroon.leftButton = R.drawable.button_left_maroon;
-        layoutMaroon.rightButton = R.drawable.button_right_maroon;
-        layoutMaroon.frame = R.drawable.frame_maroon;
-        layoutContainer.add(layoutMaroon);
-
-        ThemeClass layoutOldGold = new ThemeClass();
-
-        layoutOldGold.backGround = R.color.oldGoldVeryLite;
-        layoutOldGold.leftButton = R.drawable.button_left_oldgold;
-        layoutOldGold.rightButton = R.drawable.button_right_oldgold;
-        layoutOldGold.frame = R.drawable.frame_oldgold;
-        layoutContainer.add(layoutOldGold);
-
-        ThemeClass layoutStoneBlue = new ThemeClass();
-
-        layoutStoneBlue.backGround = R.color.stoneBlueVeryLite;
-        layoutStoneBlue.leftButton = R.drawable.button_left_stoneblue;
-        layoutStoneBlue.rightButton = R.drawable.button_right_stoneblue;
-        layoutStoneBlue.frame = R.drawable.frame_stoneblue;
-        layoutContainer.add(layoutStoneBlue);
-
-        ThemeClass layoutDarkClouds = new ThemeClass();
-
-        layoutDarkClouds.backGround = R.color.stormPurpleVeryLite;
-        layoutDarkClouds.leftButton = R.drawable.button_left_stormpurple;
-        layoutDarkClouds.rightButton = R.drawable.button_right_stormpurple;
-        layoutDarkClouds.frame = R.drawable.frame_stormpurple;
-        layoutContainer.add(layoutDarkClouds);
-
-        ThemeClass layoutDeadOrange = new ThemeClass();
-
-        layoutDeadOrange.backGround = R.color.deadOrangeVeryLite;
-        layoutDeadOrange.leftButton = R.drawable.button_left_deadorange;
-        layoutDeadOrange.rightButton = R.drawable.button_right_deadorange;
-        layoutDeadOrange.frame = R.drawable.frame_deadorange;
-        layoutContainer.add(layoutDeadOrange);
-
-        ThemeClass layoutSeaBlue = new ThemeClass();
-
-        layoutSeaBlue.backGround = R.color.seaBlueVeryLite;
-        layoutSeaBlue.leftButton = R.drawable.button_left_seablue;
-        layoutSeaBlue.rightButton = R.drawable.button_right_seablue;
-        layoutSeaBlue.frame = R.drawable.frame_seablue;
-        layoutContainer.add(layoutSeaBlue);
-
-        ThemeClass layoutJungleGreen = new ThemeClass();
-
-        layoutJungleGreen.backGround = R.color.jungleGreenVeryLite;
-        layoutJungleGreen.leftButton = R.drawable.button_left_junglegreen;
-        layoutJungleGreen.rightButton = R.drawable.button_right_junglegreen;
-        layoutJungleGreen.frame = R.drawable.frame_junglegreen;
-        layoutContainer.add(layoutJungleGreen);
     }
 
     public void midText(){

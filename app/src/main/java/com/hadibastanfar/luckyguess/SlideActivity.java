@@ -25,27 +25,21 @@ public class SlideActivity extends AppCompatActivity {
 
     public TextView okText;
     public boolean okVisibility = false;
-
-    private View indicator1;
-    private View indicator2;
-    private View indicator3;
-    private View indicator4;
-
-
+    private View indicator1,indicator2,indicator3,indicator4;
     private SharedPreferences sharedPref;
     private SharedPreferences sharedPrefLang;
 
     public Drawable[] imgs;
 
     public String[] titlesEN = {
-            "Pick a number between 0 and 107"
+             "Pick a number between 0 and 107"
             ,"Then look carefully at the 7 different cards that will be shown to you step by step "
             ,"If You see the number in the card just tap Yes if not then tap NO"
             ,"And when all the 7 cards are shown the number you had in mind will appear on the cards frame"
     };
 
     public String[] titlesFA = {
-            "یه عدد بین ۰ و ۱۰۷ انتخاب کن "
+             "یه عدد بین ۰ و ۱۰۷ انتخاب کن "
             ,"با دقت به کارت نگاه کن چون کارت قراره هفت بار عوض بشه"
             ,"اگه عددی که تو ذهنت انتخاب کردی داخل کارت دیدی بله رو بزن اگه ندیدی هم که نه رو بزن"
             ,"وقتی همه هفت تا کارت نشون داده شد عدد توی ذهنت روی دایره ظاهر میشه"
@@ -116,16 +110,8 @@ public class SlideActivity extends AppCompatActivity {
     @Override
     public void onBackPressed() {
 
-        Intent intentbackpressed = new Intent(this,EntryActivity.class);
+        Intent intentbackpressed = new Intent(this, EntryActivity.class);
         startActivity(intentbackpressed);
-
-//        if (mPager.getCurrentItem() == 0) {
-//            // If the user is currently looking at the first step, allow the system to handle the
-//            super.onBackPressed();
-//        } else {
-//            // Otherwise, select the previous step.
-//            mPager.setCurrentItem(mPager.getCurrentItem() - 1);
-//        }
     }
 
     public class ScreenSlidePagerAdapter extends FragmentStatePagerAdapter {
