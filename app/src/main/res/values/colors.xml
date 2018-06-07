@@ -4,12 +4,38 @@
     <color name="colorPrimaryDark">#303F9F</color>
     <color name="colorAccent">#FF4081</color>
     <color name="background">#1265ff</color>
-    <color name="orange">#FFAA00</color>
 
-    <color name="maroon">#C0392B</color>
-    <color name="maroonLite">#CD6155</color>
-    <color name="maroonVeryLite">#F5B7B1</color>
 
-    <color name="seaBlue">#3498DB</color>
-    <color name="seaBlueLite">#5499C7</color>
+    <color name="deadOrange">#A04000</color>
+    <color name="deadOrangeLite">#D35400</color>
+    <color name="deadOrangeVeryLite">#DC7633</color>
+
+    <color name="stormPurple">#6C3483</color>
+    <color name="stormPurpleLite">#8E44AD</color>
+    <color name="stormPurpleVeryLite">#A569BD</color>
+
+    <color name="dirtySilver">#7B7D7D</color>
+    <color name="dirtySilverLite">#979A9A</color>
+    <color name="dirtySilverVeryLite">#B3B6B7</color>
+
+    <color name="maroon">#922B21</color>
+    <color name="maroonLite">#C0392B</color>
+    <color name="maroonVeryLite">#CD6155</color>
+
+    <color name="seaBlue">#21618C</color>
+    <color name="seaBlueLite">#2E86C1</color>
+    <color name="seaBlueVeryLite">#5DADE2</color>
+
+    <color name="oldGold">#D4AC0D</color>
+    <color name="oldGoldLite">#F4D03F</color>
+    <color name="oldGoldVeryLite">#F7DC6F</color>
+
+    <color name="jungleGreen">#1E8449</color>
+    <color name="jungleGreenLite">#27AE60</color>
+    <color name="jungleGreenVeryLite">#52BE80</color>
+
+    <color name="stoneBlue">#148F77</color>
+    <color name="stoneBlueLite">#1ABC9C</color>
+    <color name="stoneBlueVeryLite">#48C9B0</color>
+
 </resources>
